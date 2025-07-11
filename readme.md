@@ -13,6 +13,30 @@ Kisitu;
   And click install. Reboot VSCode and it should work. 
   Just right click on any html file and pick "Open with live Server"
   
+## Reusable HTML Components (Updated)
+
+The project now includes an expanded HTML partials system for better code reuse and easier maintenance:
+
+- **Three Core Partials**: 
+  - `header.html` - Site branding and theme controls
+  - `navigation.html` - Main menu (separate from header for better modularity)
+  - `footer.html` - Site footer with copyright and social links
+
+- **Implementation Examples**: 
+  - `partials-example.html` - Working demonstration with explanations
+  - `example-js.html` - Complete page using partials
+  - `new-page-template.html` - Template for creating new pages
+
+- **Documentation**: 
+  - Check `docs/partials-documentation.md` for detailed instructions
+  - See `partials.md` for conceptual overview of partials
+
+- **Mobile Responsive Design**:
+  - Fully responsive layout for mobile devices
+  - Mobile-friendly navigation with hamburger menu
+  - Optimized images and typography for small screens
+  - See `docs/mobile-responsiveness.md` for implementation details
+  
 # Example Color Schemes
   ![ForestGreen](./images/Forestgreen.png)
   ![ForestLight](./images/ForestLigth.png)

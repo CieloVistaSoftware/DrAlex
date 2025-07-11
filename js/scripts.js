@@ -99,17 +99,92 @@ function initBackToTop() {
   }
 }
 
+/**
+ * Loads HTML partials via fetch API
+ */
+function loadPartials() {
+  // Check for partials placeholders and load if present
+  if (document.getElementById('header-placeholder')) {
+    loadPartial('partials/header.html', 'header-placeholder');
+  }
+  
+  if (document.getElementById('navigation-placeholder')) {
+    loadPartial('partials/navigation.html', 'navigation-placeholder');
+  }
+  
+  if (document.getElementById('footer-placeholder')) {
+    loadPartial('partials/footer.html', 'footer-placeholder');
+  }
+}
+
+/**
+ * Loads a partial HTML file into a specified element
+ * @param {string} url - Path to the partial HTML file
+ * @param {string} elementId - Target element ID to inject the partial
+ */
+function loadPartial(url, elementId) {
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Failed to load partial: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById(elementId).innerHTML = data;
+      
+      // Run initialization after partial is loaded if needed
+      if (url.includes('header.html')) {
+        setActiveNavLink();
+      }
+    })
+    .catch(error => {
+      console.error('Error loading partial:', error);
+      document.getElementById(elementId).innerHTML = `<p>Error loading content. Please refresh or try again later.</p>`;
+    });
+}
+
 // Initialize everything when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
   // Apply theme settings
   applyThemeAndLayout();
+  
+  // Load partials if present on the page
+  loadPartials();
   
   // Set active navigation link
   setActiveNavLink();
   
   // Initialize back to top functionality
   initBackToTop();
+  
+  // Initialize mobile menu
+  initMobileMenu();
 });
+
+// Initialize mobile menu functionality
+function initMobileMenu() {
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const navList = document.getElementById('nav-list');
+  
+  if (mobileMenuToggle && navList) {
+    mobileMenuToggle.addEventListener('click', function() {
+      navList.classList.toggle('show');
+      mobileMenuToggle.textContent = navList.classList.contains('show') ? '✕ Close' : '☰ Menu';
+    });
+    
+    // Close mobile menu when a link is clicked
+    const navLinks = navList.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth < 768) {
+          navList.classList.remove('show');
+          mobileMenuToggle.textContent = '☰ Menu';
+        }
+      });
+    });
+  }
+}
 
 // Apply settings immediately to avoid FOUC (Flash of Unstyled Content)
 applyThemeAndLayout();

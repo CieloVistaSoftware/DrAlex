@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ocean" data-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Partials Example - Dr. Alex Kisitu</title>
+  <meta name="description" content="Example of HTML partials implementation for Dr. Alex Kisitu's website">
+  <meta name="keywords" content="eye care, optometrist, html partials, Dr. Alex Kisitu">
+  
+  <!-- Load scripts.js which contains the partials loading functionality -->
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/scripts.js"></script>
+</head>
+<body data-theme="ocean" data-layout="left-nav" data-mode="dark">
+  <div id="site-container" class="site-container">
+    <!-- Header placeholder - will be filled by scripts.js -->
+    <div id="header-placeholder"></div>
+    
+    <!-- Navigation placeholder - will be filled by scripts.js (separate from header) -->
+    <div id="navigation-placeholder"></div>
+    
+    <!-- Main Content -->
+    <main id="main-content" class="main-content">
+      <!-- Page-specific content -->
+      <div class="hero-section">
+        <h1>HTML Partials Example</h1>
+        <h2>Reusable Components for Dr. Alex Kisitu's Website</h2>
+        <p>This page demonstrates how to use HTML partials with JavaScript</p>
+      </div>
+
+      <section class="services-overview">
+        <h2>How It Works</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>1. HTML Structure</h3>
+            <p>Create placeholder elements in your HTML for partials</p>
+            <pre><code>&lt;div id="header-placeholder"&gt;&lt;/div&gt;
+&lt;div id="navigation-placeholder"&gt;&lt;/div&gt;
+&lt;div id="footer-placeholder"&gt;&lt;/div&gt;</code></pre>
+          </div>
+          <div class="service-card">
+            <h3>2. JavaScript Loading</h3>
+            <p>Load partials with fetch() when the page loads</p>
+            <pre><code>loadPartial('partials/header.html', 'header-placeholder');
+loadPartial('partials/navigation.html', 'navigation-placeholder');
+loadPartial('partials/footer.html', 'footer-placeholder');</code></pre>
+          </div>
+          <div class="service-card">
+            <h3>3. Modular Components</h3>
+            <p>Each partial serves a specific purpose:</p>
+            <ul>
+              <li><strong>header.html</strong> - Page head and site container</li>
+              <li><strong>navigation.html</strong> - Main site navigation menu</li>
+              <li><strong>footer.html</strong> - Site footer with copyright and social links</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      
+      <section class="theme-demo">
+        <h2>Benefits of This Approach</h2>
+        <ul>
+          <li>No server-side languages required (no PHP)</li>
+          <li>Works with static website hosting</li>
+          <li>Easy to maintain and update</li>
+          <li>Consistent look and feel across all pages</li>
+          <li>Reduced duplication of code</li>
+          <li>Separation of concerns - navigation is now its own component</li>
+        </ul>
+        <p>See <a href="partials.md">partials.md</a> for complete documentation</p>
+      </section>
+    </main>
+    
+    <!-- Footer placeholder - will be filled by scripts.js -->
+    <div id="footer-placeholder"></div>
+  </div>
+  
+  <!-- Back to top button -->
+  <a href="#" class="back-to-top" aria-label="Back to top">↑</a>
+</body>
+</html>
