@@ -21,4 +21,6 @@ Kisitu;
   ![](./images/SunsetDark.png)
   ![](./images/DefaultLight.png)
   ![](./images/OceanLight.png)
+
+  Just updated YAML for pages publication on push
   
