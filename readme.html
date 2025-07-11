@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Alex Kisitu Website - Maintenance Guide</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+      color: #333;
+    }
+    
+    h1, h2, h3, h4 {
+      color: #6366f1;
+      margin-top: 2rem;
+    }
+    
+    h1 {
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #6366f1;
+    }
+    
+    code {
+      background: #f5f5f5;
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-family: Consolas, Monaco, 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+    
+    pre {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    
+    pre code {
+      background: none;
+      padding: 0;
+    }
+    
+    .note {
+      background-color: #e6f7ff;
+      border-left: 4px solid #1890ff;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 5px 5px 0;
+    }
+    
+    .warning {
+      background-color: #fff7e6;
+      border-left: 4px solid #fa8c16;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 5px 5px 0;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+    }
+    
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.75rem;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #f5f5f5;
+      font-weight: 600;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    
+    .folder-structure {
+      font-family: Consolas, Monaco, 'Courier New', monospace;
+      white-space: pre;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dr. Alex Kisitu Website - Maintenance Guide</h1>
+  
+  <p>This document provides comprehensive instructions on how to maintain and update the Dr. Alex Kisitu website. The site has been structured into multiple pages with separate CSS and JavaScript files for easier maintenance.</p>
+  
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#structure">Website Structure</a></li>
+    <li><a href="#editing">How to Edit Content</a></li>
+    <li><a href="#css">Modifying the Style (CSS)</a></li>
+    <li><a href="#js">Working with JavaScript</a></li>
+    <li><a href="#adding">Adding New Pages</a></li>
+    <li><a href="#images">Managing Images</a></li>
+    <li><a href="#seo">SEO Best Practices</a></li>
+    <li><a href="#faq">FAQ and Troubleshooting</a></li>
+  </ol>
+  
+  <h2 id="structure">Website Structure</h2>
+  
+  <p>The website is organized with a multi-page structure, following this layout:</p>
+  
+  <div class="folder-structure">
+DrAlex/
+├── css/
+│   └── styles.css        # All styles for the entire website
+├── js/
+│   └── scripts.js        # All JavaScript functionality
+├── images/              # Images folder
+│   ├── DrAlex.jpeg
+│   ├── CyberPunk.png
+│   └── [other images]
+├── index.html           # Home page
+├── about.html           # About page
+├── services.html        # Services page
+├── portfolio.html       # Portfolio/Patient Stories page
+├── contact.html         # Contact page
+└── readme.html          # This documentation file
+  </div>
+  
+  <div class="note">
+    <strong>Note:</strong> This multi-page structure makes it much easier to maintain compared to a single large file. Each page focuses on one specific section of content.
+  </div>
+  
+  <h2 id="editing">How to Edit Content</h2>
+  
+  <p>To update content on the website, you'll need to edit the corresponding HTML file:</p>
+  
+  <table>
+    <tr>
+      <th>To Update</th>
+      <th>Edit This File</th>
+      <th>Notes</th>
+    </tr>
+    <tr>
+      <td>Home page content</td>
+      <td><code>index.html</code></td>
+      <td>Main landing page with hero section and features</td>
+    </tr>
+    <tr>
+      <td>About Dr. Alex</td>
+      <td><code>about.html</code></td>
+      <td>Doctor profile, team information, philosophy</td>
+    </tr>
+    <tr>
+      <td>Services offered</td>
+      <td><code>services.html</code></td>
+      <td>Eye exams, eyewear, contact lenses, disease management</td>
+    </tr>
+    <tr>
+      <td>Patient testimonials</td>
+      <td><code>portfolio.html</code></td>
+      <td>Patient stories and well wishes</td>
+    </tr>
+    <tr>
+      <td>Contact information</td>
+      <td><code>contact.html</code></td>
+      <td>Contact details, hours, form, and emergency info</td>
+    </tr>
+  </table>
+  
+  <h3>Basic HTML Editing</h3>
+  
+  <p>To edit text content, locate the text you want to change in the HTML file and modify it directly. For example:</p>
+  
+  <pre><code>&lt;!-- Before -->
+&lt;p class="site-subtitle">Personal Eye Care just for you!&lt;/p>
+
+&lt;!-- After -->
+&lt;p class="site-subtitle">Comprehensive Eye Care for the Whole Family!&lt;/p></code></pre>
+  
+  <div class="note">
+    <strong>Tip:</strong> Use a code editor like Visual Studio Code, Notepad++, or Sublime Text for easier HTML editing.
+  </div>
+  
+  <h2 id="css">Modifying the Style (CSS)</h2>
+  
+  <p>All styling is centralized in <code>css/styles.css</code>. This makes it easy to maintain a consistent look across all pages.</p>
+  
+  <h3>Common Style Changes</h3>
+  
+  <h4>Changing Colors</h4>
+  
+  <p>The website uses CSS variables for colors, making it easy to update the entire color scheme by changing just a few values at the top of the CSS file:</p>
+  
+  <pre><code>:root {
+  /* Theme colors with purple secondary */
+  --primary: #6366f1;     /* Change this to update primary color */
+  --secondary: #9333ea;   /* Change this to update secondary color */
+  --accent: #10b981;      /* Change this to update accent color */
+  /* ... other color variables ... */
+}</code></pre>
+  
+  <h4>Adjusting Fonts</h4>
+  
+  <p>To change the font family, locate this section in the CSS:</p>
+  
+  <pre><code>body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* ... other body styles ... */
+}</code></pre>
+  
+  <p>Replace with your desired font (you may need to add a link to Google Fonts in the HTML head section).</p>
+  
+  <h2 id="js">Working with JavaScript</h2>
+  
+  <p>All JavaScript functionality is contained in <code>js/scripts.js</code>. The main functions are:</p>
+  
+  <ul>
+    <li><strong>Theme Management:</strong> Controls dark/light mode and color themes</li>
+    <li><strong>Navigation:</strong> Highlights active page in navigation</li>
+    <li><strong>Back to Top:</strong> Manages the back-to-top button functionality</li>
+  </ul>
+  
+  <div class="warning">
+    <strong>Warning:</strong> Be careful when editing JavaScript. Always make a backup before making changes, and test thoroughly after any modifications.
+  </div>
+  
+  <h2 id="adding">Adding New Pages</h2>
+  
+  <p>To add a new page to the website:</p>
+  
+  <ol>
+    <li>Create a new HTML file in the root directory (e.g., <code>new-page.html</code>)</li>
+    <li>Copy the basic structure from an existing page as a template</li>
+    <li>Update the page title, meta description, and keywords</li>
+    <li>Replace the content with your new content</li>
+    <li>Add a link to the new page in the navigation section of all existing pages:</li>
+  </ol>
+  
+  <pre><code>&lt;nav id="site-nav" class="site-nav">
+  &lt;ul id="nav-list" class="nav-list">
+    &lt;li>&lt;a href="index.html" class="nav-link">Home&lt;/a>&lt;/li>
+    &lt;li>&lt;a href="about.html" class="nav-link">About&lt;/a>&lt;/li>
+    &lt;li>&lt;a href="services.html" class="nav-link">Services&lt;/a>&lt;/li>
+    &lt;li>&lt;a href="portfolio.html" class="nav-link">Portfolio&lt;/a>&lt;/li>
+    &lt;li>&lt;a href="contact.html" class="nav-link">Contact&lt;/a>&lt;/li>
+    &lt;li>&lt;a href="new-page.html" class="nav-link">New Page&lt;/a>&lt;/li> &lt;!-- Add this line -->
+  &lt;/ul>
+&lt;/nav></code></pre>
+  
+  <h3>Example Template for New Page</h3>
+  
+  <pre><code>&lt;!DOCTYPE html>
+&lt;html lang="en" data-theme="ocean" data-mode="dark">
+&lt;head>
+  &lt;meta charset="UTF-8">
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0">
+  &lt;title>Page Title - Dr. Alex Kisitu&lt;/title>
+  &lt;meta name="description" content="Description of the page">
+  &lt;meta name="keywords" content="relevant, keywords, here">
+  &lt;link rel="stylesheet" href="css/styles.css">
+  &lt;script src="js/scripts.js">&lt;/script>
+&lt;/head>
+&lt;body data-theme="ocean" data-layout="left-nav" data-mode="dark" class="theme-ocean dark-mode">
+  &lt;div id="site-container" class="site-container">
+    &lt;!-- Navigation (Copy from another page) -->
+    &lt;nav id="site-nav" class="site-nav">
+      &lt;!-- Navigation content -->
+    &lt;/nav>
+
+    &lt;!-- Main Content -->
+    &lt;main id="main-content" class="main-content">
+      &lt;!-- Header -->
+      &lt;header id="site-header" class="site-header">
+        &lt;h1 class="site-title">Page Title&lt;/h1>
+        &lt;p class="site-subtitle">Page subtitle&lt;/p>
+      &lt;/header>
+
+      &lt;!-- Your Page Content -->
+      &lt;section id="your-section" class="content-section">
+        &lt;h2 class="section-title">Section Title&lt;/h2>
+        &lt;div class="section-content">
+          &lt;p>Your content here...&lt;/p>
+        &lt;/div>
+      &lt;/section>
+    &lt;/main>
+
+    &lt;!-- Footer (Copy from another page) -->
+    &lt;footer id="site-footer" class="site-footer">
+      &lt;!-- Footer content -->
+    &lt;/footer>
+  &lt;/div>
+  
+  &lt;!-- Back to top button -->
+  &lt;a href="#" class="back-to-top" title="Back to top">↑&lt;/a>
+&lt;/body>
+&lt;/html></code></pre>
+  
+  <h2 id="images">Managing Images</h2>
+  
+  <p>All images should be stored in the <code>images/</code> folder. To add a new image:</p>
+  
+  <ol>
+    <li>Optimize the image for web (reduce file size while maintaining quality)</li>
+    <li>Place the image file in the <code>images/</code> folder</li>
+    <li>Reference it in your HTML using the relative path:
+      <pre><code>&lt;img src="images/your-image-name.jpg" alt="Descriptive alt text"></code></pre>
+    </li>
+  </ol>
+  
+  <div class="note">
+    <strong>Best Practice:</strong> Always include meaningful alt text for images to improve accessibility and SEO.
+  </div>
+  
+  <h2 id="seo">SEO Best Practices</h2>
+  
+  <p>For optimal search engine performance:</p>
+  
+  <ol>
+    <li><strong>Page Titles:</strong> Each page has a unique, descriptive title tag that includes "Dr. Alex Kisitu"</li>
+    <li><strong>Meta Descriptions:</strong> Each page has a unique meta description (150-160 characters)</li>
+    <li><strong>Keywords:</strong> Relevant keywords are included in meta keywords tag and naturally throughout content</li>
+    <li><strong>Headings:</strong> Proper use of heading hierarchy (H1 → H2 → H3)</li>
+    <li><strong>Image Alt Text:</strong> All images have descriptive alt text</li>
+  </ol>
+  
+  <p>When updating content, remember to keep these SEO elements in mind.</p>
+  
+  <h2 id="faq">FAQ and Troubleshooting</h2>
+  
+  <h3>The styling isn't updating after I changed the CSS</h3>
+  <p>Try clearing your browser cache (Ctrl+F5 or Cmd+Shift+R) or using a private/incognito window to view the site.</p>
+  
+  <h3>Images aren't displaying</h3>
+  <p>Check that the image path is correct and that the image exists in the images folder. Image paths are case-sensitive.</p>
+  
+  <h3>Navigation links aren't working</h3>
+  <p>Verify that the href attributes in your navigation links point to the correct filenames.</p>
+  
+  <h3>I want to change the theme colors site-wide</h3>
+  <p>Edit the CSS variables at the top of the <code>css/styles.css</code> file.</p>
+  
+  <h3>How do I add a new section to an existing page?</h3>
+  <p>Copy the structure of an existing section and modify the content as needed:</p>
+  
+  <pre><code>&lt;section id="new-section" class="content-section">
+  &lt;h2 class="section-title">New Section Title&lt;/h2>
+  &lt;div class="section-content">
+    &lt;p>Your content here...&lt;/p>
+  &lt;/div>
+&lt;/section></code></pre>
+
+  <h2>Need Additional Help?</h2>
+  <p>If you encounter any issues not covered in this guide, please contact your web developer for assistance.</p>
+  
+  <hr>
+  <p><small>&copy; 2025 Dr. Alex Kisitu. Website maintenance guide.</small></p>
+</body>
+</html>
