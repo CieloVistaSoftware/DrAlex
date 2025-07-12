@@ -3,6 +3,7 @@
 This document lists current open issues and known bugs that need to be addressed in the website.
 
 ## Frontend Issues
+The example-js.html doesn't make sense. Example of what?  It shows mixed content. What we don't have is a way for a user to create a brand new page and tie it into the existing web site. 
 
 ### Low Priority
 - Improve mobile navigation animation smoothness
@@ -16,6 +17,9 @@ This document lists current open issues and known bugs that need to be addressed
 - Implement request logging for diagnostics
 
 ## Documentation
+
+### Completed
+- Created documentation for running a backend service with GitHub Pages (see docs/github-pages-backend.md)
 
 ### Low Priority
 - Create developer onboarding guide

@@ -1,5 +1,25 @@
 # Dr. Alex Kisitu Website - Implementation Fixes Log
 
+## 2025-07-11 - Added GitHub Pages Backend Integration Documentation
+
+- Created comprehensive guide for integrating backend services with GitHub Pages
+- Documented four different approaches to enable backend functionality with static hosting
+- Added specific instructions for serverless functions (Netlify and Vercel)
+- Included code samples for adapting the Claude API integration to serverless environments
+- Added security best practices for API key management
+- Provided deployment configurations and GitHub Actions workflow examples
+- Created detailed testing and verification guidance
+- Added the guide to docs/github-pages-backend.md
+
+## 2025-07-11 - Improved Connection Error Handling in Chat Widget
+
+- Enhanced error messages to clearly indicate when the backend server is not running
+- Added specific instructions on how to start the backend server when connection fails
+- Improved the retry button with clearer labeling and additional help text
+- Added more user-friendly styling for the connection error messages
+- Fixed issues with proper error handling when the backend isn't available
+- Improved user guidance to help troubleshoot connection problems
+
 ## 2025-07-11 - Removed Full Screen Button from Chat Widget
 
 - Removed the fullscreen button with "Full screen mode" tooltip from the chat widget

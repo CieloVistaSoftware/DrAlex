@@ -196,8 +196,13 @@ class ChatWidget {
       
       console.log(`Sending request to API endpoint: ${this.apiUrl}`);
       
-      // Call API
-      const response = await fetch(this.apiUrl, {
+      // Create timeout promise
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Request timeout: Unable to establish connection with the server')), 5000); // 5 second timeout
+      });
+      
+      // Create fetch promise
+      const fetchPromise = fetch(this.apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -208,6 +213,9 @@ class ChatWidget {
           sessionHistory: this.sessionHistory
         })
       });
+      
+      // Race between fetch and timeout
+      const response = await Promise.race([fetchPromise, timeoutPromise]);
       
       if (!response.ok) {
         const errorText = await response.text();
@@ -262,10 +270,23 @@ class ChatWidget {
       // Default error message
       let errorMessage = 'Sorry, there was an error processing your request. Please try again later.';
       let errorDetails = '';
+      let connectionError = false;
       
       try {
-        // Try to extract detailed error information from the response
-        if (error.responseData) {
+        // Check for timeout or connection errors first
+        if (error.message && error.message.includes('Request timeout')) {
+          errorMessage = '⚠️ Connection Timeout';
+          errorDetails = 'Unable to establish a connection with the server. The chat service may be offline or experiencing issues.';
+          connectionError = true;
+        } else if (error.message && error.message.includes('Failed to fetch')) {
+          errorMessage = '⚠️ Chat Server Not Running';
+          errorDetails = 'Unable to connect to the chat server. The backend server (port 3000) has not been started.';
+          connectionError = true;
+        } else if (error.name === 'AbortError') {
+          errorMessage = '⚠️ Connection Aborted';
+          errorDetails = 'The connection to the server was aborted. Please check your internet connection and try again.';
+          connectionError = true;
+        } else if (error.responseData) {
           // If we have parsed error data
           const errorData = error.responseData;
           errorMessage = `Error: ${errorData.error || 'Unknown error'}`;
@@ -288,9 +309,7 @@ class ChatWidget {
         } else if (error.message && error.message.includes('404')) {
           errorMessage = 'API endpoint not found.';
           errorDetails = 'Please check the server URL configuration.';
-        } else if (error.message && error.message.includes('Failed to fetch')) {
-          errorMessage = 'Unable to connect to the chat server.';
-          errorDetails = 'The server may be offline or not properly configured.';
+          connectionError = true;
         } else if (error.message && error.message.includes('API error')) {
           // Try to extract more information from the error message
           const match = error.message.match(/API error: (.+)/);
@@ -308,14 +327,26 @@ class ChatWidget {
       // Display both the error message and details
       this.addMessage({
         role: 'system',
-        content: `${errorMessage}\n\n${errorDetails ? 'Details: ' + errorDetails : ''}`
+        content: `${errorMessage}\n\n${errorDetails}`
       });
       
-      // Also add a help message
-      this.addMessage({
-        role: 'system',
-        content: 'If this problem persists, please contact our support team or try again later.'
-      });
+      // Add a different help message based on the error type
+      if (connectionError) {
+        this.addMessage({
+          role: 'system',
+          content: 'To fix this issue:\n\n1. Open a terminal window\n2. Run the command: `npm run backend`\n\nThis will start the chat backend server on port 3000. You can also use `npm start` to launch both frontend and backend together.'
+        });
+      } else {
+        this.addMessage({
+          role: 'system',
+          content: 'If this problem persists, please contact our support team or try again later.'
+        });
+      }
+      
+      // For connection errors, add a retry button
+      if (connectionError) {
+        this.addRetryButton();
+      }
     }
     
     // Reset loading state
@@ -323,6 +354,69 @@ class ChatWidget {
     
     // Scroll to bottom
     this.scrollToBottom();
+  }
+  
+  // Add a retry button method
+  addRetryButton() {
+    const retryEl = document.createElement('div');
+    retryEl.className = 'chat-message system-message retry-message';
+    retryEl.innerHTML = `
+      <div class="message-content system-content">
+        <button class="retry-button">Test Connection</button>
+        <div class="retry-info">After starting the backend server, click this button to test the connection</div>
+      </div>
+    `;
+    this.messagesContainer.appendChild(retryEl);
+    
+    // Add click event for retry
+    const retryButton = retryEl.querySelector('.retry-button');
+    retryButton.addEventListener('click', () => {
+      // Remove the retry button
+      retryEl.remove();
+      // Try to reconnect - just send a test message to the health endpoint
+      this.testConnection();
+    });
+    
+    this.scrollToBottom();
+  }
+  
+  // Add a method to test the connection
+  async testConnection() {
+    // Add a testing message
+    this.addMessage({
+      role: 'system',
+      content: 'Testing connection to chat server...'
+    });
+    
+    try {
+      const healthUrl = this.apiUrl.replace('/chat', '/health');
+      
+      // Create timeout promise
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Request timeout')), 3000);
+      });
+      
+      // Create fetch promise
+      const fetchPromise = fetch(healthUrl);
+      
+      // Race between fetch and timeout
+      const response = await Promise.race([fetchPromise, timeoutPromise]);
+      
+      if (response.ok) {
+        const data = await response.json();
+        this.addMessage({
+          role: 'system',
+          content: `✅ Connected to chat server successfully!\nServer status: ${data.status}\nAPI Key configured: ${data.config.apiKeyConfigured ? 'Yes' : 'No'}`
+        });
+      } else {
+        throw new Error(`Server responded with status: ${response.status}`);
+      }
+    } catch (error) {
+      this.addMessage({
+        role: 'system',
+        content: `❌ Connection failed: ${error.message}\n\nPlease make sure the server is running on port 3000.`
+      });
+    }
   }
   
   addMessage({ role, content }) {
@@ -666,6 +760,35 @@ document.addEventListener('DOMContentLoaded', () => {
     .system-content {
       background-color: #ffeeee;
       border: 1px solid #ffcccc;
+    }
+    
+    .retry-button {
+      background-color: var(--primary, #6366f1);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      display: block;
+      margin: 10px auto;
+    }
+    
+    .retry-button:hover {
+      background-color: var(--primary-dark, #4244b8);
+    }
+    
+    .retry-info {
+      font-size: 0.9em;
+      color: #666;
+      text-align: center;
+      margin-top: 8px;
+      font-style: italic;
+    }
+    
+    .chat-widget.dark-mode .retry-info {
+      color: #aaa;
     }
     
     .chat-input-container {
