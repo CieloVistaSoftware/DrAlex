@@ -12,8 +12,13 @@ This document explains the improvements made to ensure the website is fully resp
 ### 2. Mobile Navigation Menu
 
 - Added a hamburger menu toggle for smaller screens
-- Navigation links stack vertically on mobile
-- Mobile menu closes when a navigation link is clicked
+- Navigation bar stays fixed at the top of the page on mobile
+- Navigation links stack vertically in a dropdown menu
+- Mobile menu closes when:
+  - A navigation link is clicked
+  - User clicks outside the menu
+  - User scrolls down past 100px
+- Smooth transition effects for menu opening/closing
 
 ```html
 <button class="mobile-menu-toggle" id="mobile-menu-toggle">☰ Menu</button>
@@ -74,6 +79,7 @@ function initMobileMenu() {
   const navList = document.getElementById('nav-list');
   
   if (mobileMenuToggle && navList) {
+    // Toggle menu when button is clicked
     mobileMenuToggle.addEventListener('click', function() {
       navList.classList.toggle('show');
       mobileMenuToggle.textContent = navList.classList.contains('show') ? '✕ Close' : '☰ Menu';
@@ -89,6 +95,29 @@ function initMobileMenu() {
         }
       });
     });
+    
+    // Close mobile menu when clicking outside of it
+    document.addEventListener('click', function(event) {
+      const isClickInside = navList.contains(event.target) || mobileMenuToggle.contains(event.target);
+      if (!isClickInside && navList.classList.contains('show') && window.innerWidth < 768) {
+        navList.classList.remove('show');
+        mobileMenuToggle.textContent = '☰ Menu';
+      }
+    });
+    
+    // Hide menu on scroll (after scrolling a bit)
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+      const st = window.pageYOffset || document.documentElement.scrollTop;
+      if (st > lastScrollTop && st > 100) {
+        // Scrolling down and past 100px
+        if (navList.classList.contains('show') && window.innerWidth < 768) {
+          navList.classList.remove('show');
+          mobileMenuToggle.textContent = '☰ Menu';
+        }
+      }
+      lastScrollTop = st <= 0 ? 0 : st;
+    }, { passive: true });
   }
 }
 ```

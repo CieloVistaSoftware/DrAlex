@@ -5,38 +5,113 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dr. Alex Kisitu Website - Maintenance Guide</title>
   <style>
+    :root {
+      /* Light mode colors */
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --text-primary: #333333;
+      --text-secondary: #666666;
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --border-color: #e2e8f0;
+      --code-bg: #f5f5f5;
+      --note-bg: #e6f7ff;
+      --note-border: #1890ff;
+      --warning-bg: #fff7e6;
+      --warning-border: #fa8c16;
+      --table-header-bg: #f5f5f5;
+      --table-row-even: #f9f9f9;
+      --table-border: #ddd;
+    }
+    
+    [data-theme="dark"] {
+      --bg-primary: #222222;
+      --bg-secondary: #333333;
+      --text-primary: #e1e1e1;
+      --text-secondary: #aaaaaa;
+      --primary: #818cf8;
+      --primary-dark: #6366f1;
+      --border-color: #555555;
+      --code-bg: #3a3a3a;
+      --note-bg: #1e3a8a30;
+      --note-border: #3b82f6;
+      --warning-bg: #7c2d1230;
+      --warning-border: #f97316;
+      --table-header-bg: #3a3a3a;
+      --table-row-even: #2a2a2a;
+      --table-border: #555;
+    }
+    
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       line-height: 1.6;
       max-width: 1000px;
       margin: 0 auto;
       padding: 2rem;
-      color: #333;
+      color: var(--text-primary);
+      background-color: var(--bg-primary);
+      transition: all 0.3s ease;
+    }
+    
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      background-color: var(--primary-dark);
     }
     
     h1, h2, h3, h4 {
-      color: #6366f1;
+      color: var(--primary);
       margin-top: 2rem;
     }
     
     h1 {
       padding-bottom: 1rem;
-      border-bottom: 2px solid #6366f1;
+      border-bottom: 2px solid var(--primary);
+    }
+    
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
     }
     
     code {
-      background: #f5f5f5;
+      background: var(--code-bg);
       padding: 0.2rem 0.4rem;
       border-radius: 3px;
       font-family: Consolas, Monaco, 'Courier New', monospace;
       font-size: 0.9rem;
+      color: var(--primary);
     }
     
     pre {
-      background: #f5f5f5;
+      background: var(--code-bg);
       padding: 1rem;
       border-radius: 5px;
       overflow-x: auto;
+      border: 1px solid var(--border-color);
     }
     
     pre code {
@@ -45,16 +120,16 @@
     }
     
     .note {
-      background-color: #e6f7ff;
-      border-left: 4px solid #1890ff;
+      background-color: var(--note-bg);
+      border-left: 4px solid var(--note-border);
       padding: 1rem;
       margin: 1rem 0;
       border-radius: 0 5px 5px 0;
     }
     
     .warning {
-      background-color: #fff7e6;
-      border-left: 4px solid #fa8c16;
+      background-color: var(--warning-bg);
+      border-left: 4px solid var(--warning-border);
       padding: 1rem;
       margin: 1rem 0;
       border-radius: 0 5px 5px 0;
@@ -67,27 +142,39 @@
     }
     
     th, td {
-      border: 1px solid #ddd;
+      border: 1px solid var(--table-border);
       padding: 0.75rem;
       text-align: left;
     }
     
     th {
-      background-color: #f5f5f5;
+      background-color: var(--table-header-bg);
       font-weight: 600;
     }
     
     tr:nth-child(even) {
-      background-color: #f9f9f9;
+      background-color: var(--table-row-even);
     }
     
     .folder-structure {
       font-family: Consolas, Monaco, 'Courier New', monospace;
       white-space: pre;
+      background-color: var(--code-bg);
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+    }
+    
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-color);
+      margin: 2rem 0;
     }
   </style>
 </head>
 <body>
+  <button id="theme-toggle" class="theme-toggle" title="Toggle dark/light mode">🌙</button>
   <h1>Dr. Alex Kisitu Website - Maintenance Guide</h1>
   
   <p>This document provides comprehensive instructions on how to maintain and update the Dr. Alex Kisitu website. The site has been structured into multiple pages with separate CSS and JavaScript files for easier maintenance.</p>
@@ -100,6 +187,7 @@
     <li><a href="#js">Working with JavaScript</a></li>
     <li><a href="#adding">Adding New Pages</a></li>
     <li><a href="#images">Managing Images</a></li>
+    <li><a href="#claude">Setting Up Claude AI Chat</a></li>
     <li><a href="#seo">SEO Best Practices</a></li>
     <li><a href="#faq">FAQ and Troubleshooting</a></li>
   </ol>
@@ -310,6 +398,83 @@ DrAlex/
   <div class="note">
     <strong>Best Practice:</strong> Always include meaningful alt text for images to improve accessibility and SEO.
   </div>
+
+  <h2 id="claude">Setting Up Claude AI Chat</h2>
+  
+  <p>The website includes an AI-powered chat widget that uses the Claude AI service from Anthropic. To make it work, you need to set up your Claude API key as an environment variable on your server.</p>
+  
+  <h3>Getting a Claude API Key</h3>
+  
+  <ol>
+    <li>Visit <a href="https://console.anthropic.com/" target="_blank" rel="noopener">Anthropic's Console</a> and create an account or sign in</li>
+    <li>Navigate to the API Keys section</li>
+    <li>Create a new API key (keep it secure and don't share it publicly)</li>
+  </ol>
+  
+  <h3>Setting the API Key as an Environment Variable</h3>
+  
+  <h4>Windows Server</h4>
+  
+  <ol>
+    <li>Right-click on "This PC" or "My Computer" and select "Properties"</li>
+    <li>Click on "Advanced system settings"</li>
+    <li>Click on the "Environment Variables" button</li>
+    <li>Under "System Variables," click "New"</li>
+    <li>Enter the following:
+      <ul>
+        <li>Variable name: <code>CLAUDE_API_KEY</code></li>
+        <li>Variable value: <code>your-api-key-here</code> (replace with your actual API key)</li>
+      </ul>
+    </li>
+    <li>Click "OK" on all dialogs to save</li>
+    <li>Restart the server application for the changes to take effect</li>
+  </ol>
+  
+  <h4>Linux/Unix Server</h4>
+  
+  <ol>
+    <li>SSH into your server</li>
+    <li>Edit your <code>.bashrc</code>, <code>.bash_profile</code>, or appropriate shell configuration file:
+      <pre><code>nano ~/.bashrc</code></pre>
+    </li>
+    <li>Add this line at the end of the file:
+      <pre><code>export CLAUDE_API_KEY="your-api-key-here"</code></pre>
+    </li>
+    <li>Save the file and exit the editor</li>
+    <li>Apply the changes:
+      <pre><code>source ~/.bashrc</code></pre>
+    </li>
+    <li>Restart the server application</li>
+  </ol>
+  
+  <h4>For Production Environments</h4>
+  
+  <p>In production environments like IIS, nginx, or Apache, you should set the environment variable according to your hosting provider's instructions:</p>
+  
+  <ul>
+    <li><strong>IIS (Windows Server)</strong>: Use the IIS Manager to set application variables</li>
+    <li><strong>nginx/Apache</strong>: Configure in your site configuration or use <code>.env</code> files with your application</li>
+    <li><strong>Docker</strong>: Pass environment variables using <code>-e CLAUDE_API_KEY=your-key</code> or in docker-compose.yml</li>
+    <li><strong>Cloud Hosting</strong>: Set environment variables in your hosting platform's dashboard (Azure, AWS, etc.)</li>
+  </ul>
+  
+  <div class="warning">
+    <strong>Security Warning:</strong> Never commit your API key to version control or include it directly in your code. Always use environment variables or a secure secrets management system.
+  </div>
+  
+  <h3>Verifying the API Key Setup</h3>
+  
+  <p>After setting up the API key and restarting the server:</p>
+  
+  <ol>
+    <li>Start the server application using: <code>npm start</code></li>
+    <li>Look for confirmation in the terminal that the API key was detected</li>
+    <li>Open the website and test the chat widget to ensure it's working properly</li>
+  </ol>
+  
+  <div class="note">
+    <strong>Note:</strong> The chat API uses port 3000 by default. Make sure this port is available or change it in the server configuration if needed.
+  </div>
   
   <h2 id="seo">SEO Best Practices</h2>
   
@@ -354,5 +519,42 @@ DrAlex/
   
   <hr>
   <p><small>&copy; 2025 Dr. Alex Kisitu. Website maintenance guide.</small></p>
+  
+  <script>
+    // Check for saved theme preference or use preferred color scheme
+    document.addEventListener('DOMContentLoaded', function() {
+      const themeToggle = document.getElementById('theme-toggle');
+      
+      // Check for saved user preference
+      const savedTheme = localStorage.getItem('readme-theme');
+      
+      // If no saved preference, check system preference
+      if (!savedTheme) {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          themeToggle.innerHTML = '☀️';
+        }
+      } else if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggle.innerHTML = '☀️';
+      }
+      
+      // Toggle theme on button click
+      themeToggle.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        
+        if (currentTheme === 'dark') {
+          document.documentElement.removeAttribute('data-theme');
+          localStorage.setItem('readme-theme', 'light');
+          themeToggle.innerHTML = '🌙';
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('readme-theme', 'dark');
+          themeToggle.innerHTML = '☀️';
+        }
+      });
+    });
+  </script>
 </body>
 </html>

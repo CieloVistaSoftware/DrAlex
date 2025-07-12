@@ -16,42 +16,60 @@ const themeSettings = {
 
 // Function to apply theme settings and layout
 function applyThemeAndLayout() {
-  // Set attributes on HTML and BODY elements
-  document.documentElement.setAttribute('data-theme', themeSettings.theme);
-  document.documentElement.setAttribute('data-mode', themeSettings.mode);
-  document.body.setAttribute('data-theme', themeSettings.theme);
-  document.body.setAttribute('data-mode', themeSettings.mode);
-  document.body.setAttribute('data-layout', themeSettings.layout || 'left-nav');
-  
-  // Set proper class names
-  let classNames = ['theme-' + themeSettings.theme];
-  if (themeSettings.mode === 'dark') {
-    classNames.push('dark-mode');
-    document.body.classList.remove('light-mode');
-  } else {
-    classNames.push('light-mode');
-    document.body.classList.remove('dark-mode');
+  try {
+    // Check if document is fully loaded and elements exist
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyThemeAndLayout);
+      return;
+    }
+    
+    // Check if document.documentElement exists before using it
+    if (document.documentElement) {
+      document.documentElement.setAttribute('data-theme', themeSettings.theme);
+      document.documentElement.setAttribute('data-mode', themeSettings.mode);
+    }
+    
+    // Check if document.body exists before using it
+    if (document.body) {
+      document.body.setAttribute('data-theme', themeSettings.theme);
+      document.body.setAttribute('data-mode', themeSettings.mode);
+      document.body.setAttribute('data-layout', themeSettings.layout || 'left-nav');
+      
+      // Set proper class names
+      let classNames = ['theme-' + themeSettings.theme];
+      if (themeSettings.mode === 'dark') {
+        classNames.push('dark-mode');
+        document.body.classList.remove('light-mode');
+      } else {
+        classNames.push('light-mode');
+        document.body.classList.remove('dark-mode');
+      }
+      
+      // Apply all classes
+      document.body.className = document.body.className
+        .split(' ')
+        .filter(cls => !cls.startsWith('theme-') && cls !== 'dark-mode' && cls !== 'light-mode')
+        .concat(classNames)
+        .join(' ');
+    }
+    
+    // Apply all color variables to :root if document.documentElement exists
+    if (document.documentElement) {
+      const root = document.documentElement;
+      
+      // Apply theme color variables
+      root.style.setProperty('--primary', themeSettings.colors.primary || '#6366f1');
+      root.style.setProperty('--secondary', themeSettings.colors.secondary || '#9333ea');
+      root.style.setProperty('--accent', themeSettings.colors.accent || '#10b981');
+      root.style.setProperty('--primary-light', themeSettings.colors.primaryLight || '#8f91f3');
+      root.style.setProperty('--primary-dark', themeSettings.colors.primaryDark || '#4244b8');
+      root.style.setProperty('--hover-color', themeSettings.colors.hoverColor || themeSettings.colors.primary || '#6366f1');
+    }
+    
+    console.log('✓ Theme and layout settings applied successfully');
+  } catch (error) {
+    console.error('Error applying theme settings:', error);
   }
-  
-  // Apply all classes
-  document.body.className = document.body.className
-    .split(' ')
-    .filter(cls => !cls.startsWith('theme-') && cls !== 'dark-mode' && cls !== 'light-mode')
-    .concat(classNames)
-    .join(' ');
-  
-  // Apply all color variables to :root
-  const root = document.documentElement;
-  
-  // Apply theme color variables
-  root.style.setProperty('--primary', themeSettings.colors.primary || '#6366f1');
-  root.style.setProperty('--secondary', themeSettings.colors.secondary || '#9333ea');
-  root.style.setProperty('--accent', themeSettings.colors.accent || '#10b981');
-  root.style.setProperty('--primary-light', themeSettings.colors.primaryLight || '#8f91f3');
-  root.style.setProperty('--primary-dark', themeSettings.colors.primaryDark || '#4244b8');
-  root.style.setProperty('--hover-color', themeSettings.colors.hoverColor || themeSettings.colors.primary || '#6366f1');
-  
-  console.log('✓ Theme and layout settings applied successfully');
 }
 
 // Set active navigation link based on current page
@@ -183,8 +201,38 @@ function initMobileMenu() {
         }
       });
     });
+    
+    // Close mobile menu when clicking outside of it
+    document.addEventListener('click', function(event) {
+      const isClickInside = navList.contains(event.target) || mobileMenuToggle.contains(event.target);
+      if (!isClickInside && navList.classList.contains('show') && window.innerWidth < 768) {
+        navList.classList.remove('show');
+        mobileMenuToggle.textContent = '☰ Menu';
+      }
+    });
+    
+    // Hide menu on scroll (after scrolling a bit)
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+      const st = window.pageYOffset || document.documentElement.scrollTop;
+      if (st > lastScrollTop && st > 100) {
+        // Scrolling down and past 100px
+        if (navList.classList.contains('show') && window.innerWidth < 768) {
+          navList.classList.remove('show');
+          mobileMenuToggle.textContent = '☰ Menu';
+        }
+      }
+      lastScrollTop = st <= 0 ? 0 : st;
+    }, { passive: true });
   }
 }
 
-// Apply settings immediately to avoid FOUC (Flash of Unstyled Content)
-applyThemeAndLayout();
+// Apply settings when script loads, but safely wait for DOM if needed
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(applyThemeAndLayout, 0);
+  });
+} else {
+  // Document already loaded, run now but in the next tick
+  setTimeout(applyThemeAndLayout, 0);
+}
