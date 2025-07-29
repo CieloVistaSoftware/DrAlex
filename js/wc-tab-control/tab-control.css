@@ -1,0 +1,57 @@
+/* Tab Web Component Styles */
+/* Default dark mode */
+:host {
+  display: block;
+  font-family: inherit;
+  --tab-bg-color: #181c20;
+  --tab-active-color: #4fc3f7;
+  --tab-text-color: #e0e0e0;
+  --tab-border-color: #333b44;
+  --tab-focus-color: #90caf9;
+  --panel-bg-color: #23272b;
+  --panel-padding: 1rem;
+}
+.tab-nav {
+  border-bottom: 1px solid var(--tab-border-color);
+  background: var(--tab-bg-color);
+}
+.tab-list {
+  display: flex;
+  gap: 0.5rem;
+}
+.tab {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  color: var(--tab-text-color);
+  cursor: pointer;
+  border-radius: 0.25rem 0.25rem 0 0;
+  border-bottom: 2px solid transparent;
+  transition: background 0.2s, color 0.2s;
+}
+.tab[aria-selected="true"] {
+  color: var(--tab-active-color);
+  border-bottom: 2px solid var(--tab-active-color);
+  background: #fff;
+}
+.tab:focus {
+  outline: 2px solid var(--tab-focus-color);
+  z-index: 1;
+}
+.tab[disabled] {
+  color: #aaa;
+  cursor: not-allowed;
+}
+.tab-panel {
+  background: var(--panel-bg-color);
+  padding: var(--panel-padding);
+  min-height: 3rem;
+}
+.tab-panel--loading {
+  color: #888;
+  font-style: italic;
+}
+.tab-panel--error {
+  color: #b00;
+  font-weight: bold;
+}

@@ -4,15 +4,33 @@
   "description": "Dr. Alex Kisitu website with Claude AI chat integration",
   "main": "server/claude-service.js",
   "type": "module",
+  "config": {
+    "apiPort": 3000,
+    "frontendPort": 5000,
+    "testPort": 5500
+  },
   "scripts": {
-    "start": "npm run kill-ports && concurrently --kill-others \"npm run backend\" \"npm run frontend\"",
-    "backend": "node server/claude-service.js",
-    "frontend": "http-server -p 5000 -c-1",
-    "dev": "npm run kill-ports && concurrently --kill-others \"nodemon server/claude-service.js\" \"http-server -p 5000 -c-1\"",
-    "kill-ports": "npx kill-port 3000 5000",
-    "test": "jest",
+    "test": "npx playwright test",
+    "coverage": "npx c8 --reporter=lcov --reporter=text --report-dir=tests/reports npx playwright test",
+  "start": "npm run kill-ports && concurrently --kill-others \"npm run backend\" \"npm run frontend\"",
+  "backend": "set PORT=%npm_package_config_apiPort%&& node server/claude-service.js",
+  "frontend": "vite",
+  "dev": "npm run kill-ports && concurrently --kill-others \"npm run backend\" \"vite\"",
+  "build": "vite build",
+  "preview": "vite preview",
+
+    "kill-ports": "npx kill-port %npm_package_config_apiPort% %npm_package_config_frontendPort% %npm_package_config_testPort% 8080",
     "test:server": "node server/test-server.js",
-    "test:chat": "http-server -p 5500 -c-1 -o /chat-test.html"
+    "test:chat": "python -m http.server 5500",
+    "test:chat:improved": "python -m http.server 5500",
+    "test:chat:simple": "python -m http.server 5500",
+    "test:chat:all": "powershell -File ./test-chat-widget.ps1",
+    "test:chat:8080": "python -m http.server 8080",
+    "test:html": "npx playwright test tests/format-check.spec.js && npx playwright test tests/html-errors.spec.js",
+    "test:playwright": "tsc && npx playwright test tests/compiled",
+    "serve:8080": "python -m http.server 8080",
+    "dev:all": "npm run kill-ports && concurrently --kill-others \"npm run backend\" \"python -m http.server $npm_package_config_frontendPort\"",
+    "start:chattest": "npm run kill-ports && concurrently --kill-others \"npm run backend\" \"python -m http.server %npm_package_config_frontendPort%\""
   },
   "dependencies": {
     "axios": "^1.6.2",
@@ -21,12 +39,16 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-rate-limit": "^7.1.4",
-    "http-server": "^14.1.1",
-    "uuid": "^9.0.1"
+    "selfhealing-tests": "file:../selfhealing/tests/selfhealing-tests-1.0.0.tgz",
+    "uuid": "^9.0.1",
+    "vite": "^7.0.5"
   },
   "devDependencies": {
-    "jest": "^29.7.0",
+    "@playwright/test": "^1.53.2",
+    "c8": "^10.1.3",
+    "cross-env": "^7.0.3",
     "kill-port": "^2.0.1",
+    "multer": "^1.4.5-lts.1",
     "nodemon": "^3.0.1",
     "supertest": "^6.3.3"
   },

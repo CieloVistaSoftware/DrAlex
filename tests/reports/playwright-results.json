@@ -1,0 +1,197 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\jwpmi\\Downloads\\DrAlex\\playwright.config.js",
+    "rootDir": "C:/Users/jwpmi/Downloads/DrAlex/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "tests/reports"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "tests/reports/playwright-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/Users/jwpmi/Downloads/DrAlex/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/jwpmi/Downloads/DrAlex/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.53.2",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "layout-visual.spec.ts",
+      "file": "layout-visual.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Layout - Visual and Structural",
+          "file": "layout-visual.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "about.html: header, left-nav, main, and footer are present and correctly laid out",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1253,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m150\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m150\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at cb (C:\\Users\\jwpmi\\Downloads\\DrAlex\\tests\\layout-visual.spec.ts:44:21)\n    at logAndAssert (C:\\Users\\jwpmi\\Downloads\\DrAlex\\tests\\layout-visual.spec.ts:17:7)\n    at C:\\Users\\jwpmi\\Downloads\\DrAlex\\tests\\layout-visual.spec.ts:42:5",
+                        "location": {
+                          "file": "C:\\Users\\jwpmi\\Downloads\\DrAlex\\tests\\layout-visual.spec.ts",
+                          "column": 21,
+                          "line": 44
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 42 |\u001b[39m     \u001b[36mawait\u001b[39m logAndAssert(\u001b[32m'Main'\u001b[39m\u001b[33m,\u001b[39m main\u001b[33m,\u001b[39m (box) \u001b[33m=>\u001b[39m {\n \u001b[90m 43 |\u001b[39m       \u001b[90m// Should be right of left-nav\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 44 |\u001b[39m       expect(box\u001b[33m.\u001b[39mx)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m150\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 45 |\u001b[39m       expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 46 |\u001b[39m       expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 47 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\jwpmi\\Downloads\\DrAlex\\tests\\layout-visual.spec.ts",
+                            "column": 21,
+                            "line": 44
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m150\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n\u001b[0m \u001b[90m 42 |\u001b[39m     \u001b[36mawait\u001b[39m logAndAssert(\u001b[32m'Main'\u001b[39m\u001b[33m,\u001b[39m main\u001b[33m,\u001b[39m (box) \u001b[33m=>\u001b[39m {\n \u001b[90m 43 |\u001b[39m       \u001b[90m// Should be right of left-nav\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 44 |\u001b[39m       expect(box\u001b[33m.\u001b[39mx)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m150\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 45 |\u001b[39m       expect(box\u001b[33m.\u001b[39mwidth)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 46 |\u001b[39m       expect(box\u001b[33m.\u001b[39mheight)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 47 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at cb (C:\\Users\\jwpmi\\Downloads\\DrAlex\\tests\\layout-visual.spec.ts:44:21)\u001b[22m\n\u001b[2m    at logAndAssert (C:\\Users\\jwpmi\\Downloads\\DrAlex\\tests\\layout-visual.spec.ts:17:7)\u001b[22m\n\u001b[2m    at C:\\Users\\jwpmi\\Downloads\\DrAlex\\tests\\layout-visual.spec.ts:42:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Header bounding box: { x: \u001b[33m0\u001b[39m, y: \u001b[33m0\u001b[39m, width: \u001b[33m200\u001b[39m, height: \u001b[33m180\u001b[39m }\n"
+                        },
+                        {
+                          "text": "LeftNav bounding box: { x: \u001b[33m0\u001b[39m, y: \u001b[33m0\u001b[39m, width: \u001b[33m200\u001b[39m, height: \u001b[33m720\u001b[39m }\n"
+                        },
+                        {
+                          "text": "Main bounding box: { x: \u001b[33m0\u001b[39m, y: \u001b[33m180\u001b[39m, width: \u001b[33m200\u001b[39m, height: \u001b[33m355\u001b[39m }\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-07-28T03:17:04.231Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\jwpmi\\Downloads\\DrAlex\\test-results\\layout-visual-Layout---Vis-885eb-sent-and-correctly-laid-out-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\jwpmi\\Downloads\\DrAlex\\tests\\layout-visual.spec.ts",
+                        "column": 21,
+                        "line": 44
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "12ef34dd655a08ca55c7-3f15d6fd6db727400ec3",
+              "file": "layout-visual.spec.ts",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "pause for manual inspection",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1055,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-07-28T03:17:04.231Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "12ef34dd655a08ca55c7-5ccbab597978a17b15da",
+              "file": "layout-visual.spec.ts",
+              "line": 57,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-07-28T03:16:58.322Z",
+    "duration": 8270.627,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

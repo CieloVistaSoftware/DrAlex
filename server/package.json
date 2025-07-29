@@ -2,6 +2,7 @@
   "name": "dr-alex-claude-service",
   "version": "1.0.0",
   "description": "Claude AI chat backend service for Dr. Alex Kisitu website",
+  "type": "module",
   "main": "claude-service.js",
   "scripts": {
     "start": "node claude-service.js",

@@ -1,0 +1,314 @@
+{
+  "site": {
+    "title": "Dr. Alex Kisitu - Eye Care Specialist",
+    "description": "Professional eye care services by Dr. Alex Kisitu - Comprehensive eye exams, contact lens fittings, and prescription glasses in Jinja, Uganda",
+    "keywords": "eye care, optometrist, glasses, eye exams, Dr. Alex Kisitu, Jinja, Uganda, vision care",
+    "author": "Dr. Alex Kisitu",
+    "copyright": "2025 Dr. Alex Kisitu. All rights reserved."
+  },
+  "contact": {
+    "phones": [
+      {
+        "number": "+256760526155",
+        "label": "Main Office",
+        "primary": true
+      },
+      {
+        "number": "+256786132110",
+        "label": "Appointments"
+      }
+    ],
+    "emails": [
+      {
+        "address": "sehtvision@gmail.com",
+        "label": "General Inquiries",
+        "primary": true
+      },
+      {
+        "address": "info@dralexkisitu.com",
+        "label": "Information"
+      }
+    ],
+    "address": {
+      "street": "P.O BOX 43",
+      "city": "Jinja",
+      "country": "Uganda",
+      "full": "P.O BOX 43, Jinja, Uganda"
+    },
+    "hours": {
+      "weekdays": "Monday - Friday: 8:00 AM - 5:00 PM",
+      "weekend": "Saturday: 9:00 AM - 2:00 PM",
+      "closed": "Sunday: Closed"
+    }
+  },
+  "navigation": [
+    {
+      "id": "home",
+      "label": "Home",
+      "icon": "🏠",
+      "url": "#home",
+      "title": "Dr. Alex Kisitu - Eye Care Specialist"
+    },
+    {
+      "id": "about",
+      "label": "About",
+      "icon": "👤",
+      "url": "#about",
+      "title": "About Our Team - Dr. Alex Kisitu"
+    },
+    {
+      "id": "services",
+      "label": "Services",
+      "icon": "🔬",
+      "url": "#services",
+      "title": "Our Services - Dr. Alex Kisitu"
+    },
+    {
+      "id": "portfolio",
+      "label": "Portfolio",
+      "icon": "📁",
+      "url": "#portfolio",
+      "title": "Patient Stories - Dr. Alex Kisitu"
+    },
+    {
+      "id": "contact",
+      "label": "Contact",
+      "icon": "📞",
+      "url": "#contact",
+      "title": "Contact Us - Dr. Alex Kisitu"
+    },
+    {
+      "id": "chat",
+      "label": "Chat",
+      "icon": "💬",
+      "url": "#chat",
+      "title": "Chat With Us - Dr. Alex Kisitu"
+    }
+  ],
+  "footer": {
+    "links": [
+      {
+        "label": "Privacy Policy",
+        "url": "#privacy",
+        "id": "privacy"
+      },
+      {
+        "label": "Terms of Service",
+        "url": "#terms",
+        "id": "terms"
+      },
+      {
+        "label": "Contact",
+        "url": "#contact",
+        "id": "contact"
+      }
+    ]
+  },
+  "team": [
+    {
+      "name": "Dr. Alex Kisitu",
+      "role": "Lead Optometrist",
+      "description": "Dr. Alex Kisitu is a dedicated eye care professional with years of experience in providing comprehensive vision care services. Our practice focuses on personalized care and the latest in eye care technology.",
+      "specialties": ["Comprehensive Eye Exams", "Contact Lens Fitting", "Vision Therapy"]
+    },
+    {
+      "name": "Nassereka Suzan",
+      "role": "Ophthalmic Clinical Officer",
+      "specialties": ["Eye Disease Management", "Diagnostic Testing"]
+    },
+    {
+      "name": "Saka Keriana",
+      "role": "Optician",
+      "specialties": ["Frame Selection", "Lens Fitting", "Adjustments"]
+    },
+    {
+      "name": "Kaweesa Benjamin",
+      "role": "Office Manager",
+      "specialties": ["Patient Scheduling", "Insurance Processing"]
+    }
+  ],
+  "services": [
+    {
+      "id": "comprehensive-exams",
+      "title": "Comprehensive Eye Exams",
+      "icon": "👁️",
+      "description": "Complete eye health evaluations using the latest diagnostic technology.",
+      "details": "Our comprehensive eye exams include vision testing, eye pressure measurement, and retinal examination to detect early signs of eye diseases.",
+      "duration": "45-60 minutes",
+      "price": "Contact for pricing"
+    },
+    {
+      "id": "contact-lenses",
+      "title": "Contact Lens Fittings",
+      "icon": "🥽",
+      "description": "Expert consultation and fitting for all types of contact lenses.",
+      "details": "We offer fitting for daily, weekly, monthly, and specialty contact lenses including toric and multifocal designs.",
+      "duration": "30-45 minutes",
+      "price": "Contact for pricing"
+    },
+    {
+      "id": "prescription-glasses",
+      "title": "Prescription Glasses",
+      "icon": "👓",
+      "description": "Wide selection of frames and the latest lens technology.",
+      "details": "Choose from hundreds of designer and budget-friendly frames with advanced lens options including anti-reflective coating and blue light protection.",
+      "catalog": "200+ frame options",
+      "price": "Starting from affordable rates"
+    },
+    {
+      "id": "disease-management",
+      "title": "Eye Disease Management",
+      "icon": "🔬",
+      "description": "Advanced diagnosis and treatment of glaucoma, cataracts, and macular degeneration.",
+      "details": "Early detection and ongoing management of serious eye conditions to preserve your vision.",
+      "conditions": ["Glaucoma", "Cataracts", "Macular Degeneration", "Diabetic Retinopathy"]
+    },
+    {
+      "id": "pediatric-care",
+      "title": "Pediatric Eye Care",
+      "icon": "👶",
+      "description": "Specialized care for children's vision development and eye health.",
+      "details": "Child-friendly examinations to ensure proper vision development and early detection of issues.",
+      "ages": "Infants to 18 years"
+    },
+    {
+      "id": "diabetic-care",
+      "title": "Diabetic Eye Care",
+      "icon": "💊",
+      "description": "Regular monitoring and treatment for diabetes-related eye conditions.",
+      "details": "Specialized screening and treatment to prevent diabetic retinopathy and other complications.",
+      "frequency": "Annual or bi-annual screening recommended"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Sarah Johnson",
+      "relationship": "Patient since 2020",
+      "rating": 5,
+      "text": "Dr. Alex completely changed my life! I had been struggling with poor vision for years. After my first visit, I was fitted with the perfect prescription glasses. The difference was immediate and amazing!",
+      "service": "Prescription Glasses"
+    },
+    {
+      "id": 2,
+      "name": "Michael Chen",
+      "relationship": "Patient since 2019",
+      "rating": 5,
+      "text": "The team at Dr. Alex's practice is incredibly professional and caring. They detected my glaucoma early and helped me manage it effectively. I'm grateful for their expertise.",
+      "service": "Eye Disease Management"
+    },
+    {
+      "id": 3,
+      "name": "Amanda Foster",
+      "relationship": "Patient since 2021",
+      "rating": 5,
+      "text": "As a mother of three, finding time for eye care was challenging. Dr. Alex's flexible scheduling and comprehensive family care made it so much easier. All my children love coming here!",
+      "service": "Pediatric Eye Care"
+    }
+  ],
+  "pages": {
+    "home": {
+      "hero": {
+        "title": "Dr. Alex Kisitu",
+        "subtitle": "Personal Eye Care just for you!",
+        "description": "Providing comprehensive eye care services with the latest technology and personalized attention. Your vision is our priority.",
+        "cta": {
+          "text": "Schedule Appointment",
+          "link": "#contact"
+        }
+      },
+      "featuredServices": [
+        "comprehensive-exams",
+        "contact-lenses",
+        "prescription-glasses"
+      ]
+    },
+    "about": {
+      "title": "About Dr. Alex Kisitu",
+      "subtitle": "Dedicated to Your Vision Health",
+      "description": "Our practice combines years of experience with the latest technology to provide exceptional eye care for patients of all ages.",
+      "mission": "To provide personalized, comprehensive eye care that improves and preserves our patients' vision and overall quality of life.",
+      "values": [
+        "Patient-centered care",
+        "Advanced technology",
+        "Continuous education",
+        "Community service"
+      ]
+    },
+    "services": {
+      "title": "Our Services",
+      "subtitle": "Comprehensive eye care for your entire family",
+      "description": "From routine eye exams to specialized treatments, we offer a full range of eye care services using the latest technology and techniques."
+    },
+    "portfolio": {
+      "title": "Patient Stories & Well Wishes",
+      "subtitle": "Real experiences from our satisfied patients",
+      "description": "Read what our patients have to say about their experience with our eye care services."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "subtitle": "Get in touch to schedule your appointment",
+      "description": "We're here to help with all your eye care needs. Contact us today to schedule your appointment or ask any questions."
+    },
+    "chat": {
+      "title": "Chat With Us",
+      "subtitle": "Get instant support from our team",
+      "description": "Live chat functionality coming soon. For immediate assistance, please call us.",
+      "fallback": {
+        "text": "Contact Us Instead",
+        "link": "#contact"
+      }
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "January 2025",
+      "sections": [
+        {
+          "title": "Information We Collect",
+          "content": "We collect information you provide directly to us, such as when you schedule appointments, fill out forms, or contact us."
+        },
+        {
+          "title": "How We Use Information",
+          "content": "We use the information we collect to provide and improve our services, communicate with you, and comply with legal obligations."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "lastUpdated": "January 2025",
+      "sections": [
+        {
+          "title": "Acceptance of Terms",
+          "content": "By using our services, you agree to these terms and conditions."
+        },
+        {
+          "title": "Services Description",
+          "content": "We provide professional eye care services including examinations, treatments, and optical services."
+        }
+      ]
+    }
+  },
+  "socialMedia": [
+    {
+      "platform": "Facebook",
+      "url": "https://facebook.com/dralexkisitu",
+      "icon": "📘"
+    },
+    {
+      "platform": "Instagram",
+      "url": "https://instagram.com/dralexkisitu",
+      "icon": "📷"
+    },
+    {
+      "platform": "Twitter",
+      "url": "https://twitter.com/dralexkisitu",
+      "icon": "🐦"
+    }
+  ],
+  "emergencyContact": {
+    "available": true,
+    "hours": "24/7 Emergency Line",
+    "phone": "+256760526155",
+    "instructions": "For eye emergencies outside business hours, call our emergency line."
+  }
+}

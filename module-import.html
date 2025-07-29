@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Widget ES Module Import Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #f8f9fa;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .dark-mode-toggle {
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    body.dark-mode {
+      background-color: #1a1d21;
+      color: #e1e4e8;
+    }
+    body.dark-mode .container {
+      background-color: #212529;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    pre {
+      background-color: #f0f0f0;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    body.dark-mode pre {
+      background-color: #2a2d35;
+    }
+    .code-explanation {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e9ecef;
+      border-left: 4px solid #6366f1;
+    }
+    body.dark-mode .code-explanation {
+      background-color: #2a2d35;
+      border-left-color: #8286ff;
+    }
+  </style>
+  <!-- No script tag here - we'll import the module via JavaScript -->
+</head>
+<body>
+  <div class="container">
+    <h1>Chat Widget ES Module Import Test</h1>
+    
+    <div class="dark-mode-toggle">
+      <button id="toggleDarkMode">Toggle Dark Mode</button>
+    </div>
+    
+    <p>This page demonstrates how to import the chat widget as an ES module:</p>
+    <pre><code>import ChatWidget, { initChatWidget } from './js/chat-widget.module.js';</code></pre>
+    
+    <div class="code-explanation">
+      <h3>ES Module Approach</h3>
+      <p>Unlike a traditional script tag, ES modules:</p>
+      <ul>
+        <li>Need to be explicitly imported</li>
+        <li>Don't automatically run code in the global scope</li>
+        <li>Need to be initialized manually</li>
+      </ul>
+    </div>
+    
+    <button id="initModule">Initialize Chat Widget from Module</button>
+  </div>
+
+  <script type="module">
+    // Import the ChatWidget class and initChatWidget function
+    import ChatWidget, { initChatWidget } from './js/chat-widget.module.js';
+    
+    // Toggle dark mode
+    document.getElementById('toggleDarkMode').addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      console.log('Dark mode toggled. Is dark mode?', document.body.classList.contains('dark-mode'));
+    });
+    
+    // Initialize chat widget manually when button is clicked
+    document.getElementById('initModule').addEventListener('click', () => {
+      console.log('Initializing chat widget from module...');
+      const widget = new ChatWidget();
+      console.log('Chat widget initialized manually!');
+    });
+    
+    // Log that the module has been loaded
+    console.log('ES Module loaded successfully');
+  </script>
+</body>
+</html>

@@ -1,206 +1,175 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="ocean" data-mode="dark">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us - Dr. Alex Kisitu</title>
-  <meta name="description" content="Get in touch with Dr. Alex Kisitu for all your eye care needs">
-  <meta name="keywords" content="eye doctor contact, schedule appointment, eye care, optometrist contact">
-  <link rel="stylesheet" href="css/styles.css">
-  <script src="js/scripts.js"></script>
+  <meta name="description" content="Get in touch with Dr. Alex Kisitu for all your eye care needs" />
+  <meta name="keywords" content="eye doctor contact, schedule appointment, eye care, optometrist contact" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body data-theme="ocean" data-layout="left-nav" data-mode="dark" class="theme-ocean dark-mode">
-  <div id="site-container" class="site-container">
-    <!-- Navigation (Sticky) -->
-    <nav id="site-nav" class="site-nav">
-      <ul id="nav-list" class="nav-list">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
-        <li><a href="services.html" class="nav-link">Services</a></li>
-        <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-        <li><a href="contact.html" class="nav-link">Contact</a></li>
-      </ul>
-    </nav>
-
-    <!-- Main Content -->
-    <main id="main-content" class="main-content">
-      <!-- Header -->
-      <header id="site-header" class="site-header">
-        <h1 class="site-title">Contact Us</h1>
-        <p class="site-subtitle">We'd love to hear from you</p>
-      </header>
-
-      <!-- Contact Information Section -->
-      <section id="contact-info" class="content-section">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="section-content">
-          <div class="content-grid">
-            <div class="content-card">
-              <span class="card-icon">📞</span>
-              <h3 class="card-title">Phone</h3>
-              <p class="card-description">
-                <a href="tel:8008888888">800-888-8888</a><br>
-                For appointments: <a href="tel:1234567">123-4567</a>
-              </p>
-            </div>
-            <div class="content-card">
-              <span class="card-icon">📧</span>
-              <h3 class="card-title">Email</h3>
-              <p class="card-description">
-                <a href="mailto:info@dralexkisitu.com">info@dralexkisitu.com</a><br>
-                <a href="mailto:appointments@dralexkisitu.com">appointments@dralexkisitu.com</a>
-              </p>
-            </div>
-            <div class="content-card">
-              <span class="card-icon">📍</span>
-              <h3 class="card-title">Address</h3>
-              <p class="card-description">
-                123 Eye Care Lane<br>
-                Vision City, VS 12345
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Office Hours Section -->
-      <section id="office-hours" class="content-section">
-        <h2 class="section-title">Office Hours</h2>
-        <div class="section-content">
+  
+  <!-- This header info will be extracted by the SPA navigation -->
+  <site-header title="Contact Us - Site Eternal Hospital" subtitle="We'd love to hear from you at Site Eternal Hospital"></site-header>
+  
+  <!-- This main content will be loaded into the SPA -->
+  <main id="main-content" class="main-content">
+    <section id="contact-info" class="content-section">
+      <div class="section-content">
+        <div class="content-grid">
           <div class="content-card">
-            <table class="hours-table">
-              <tr>
-                <th>Day</th>
-                <th>Hours</th>
-              </tr>
-              <tr>
-                <td>Monday</td>
-                <td>9:00 AM - 5:00 PM</td>
-              </tr>
-              <tr>
-                <td>Tuesday</td>
-                <td>9:00 AM - 5:00 PM</td>
-              </tr>
-              <tr>
-                <td>Wednesday</td>
-                <td>9:00 AM - 7:00 PM</td>
-              </tr>
-              <tr>
-                <td>Thursday</td>
-                <td>9:00 AM - 5:00 PM</td>
-              </tr>
-              <tr>
-                <td>Friday</td>
-                <td>9:00 AM - 5:00 PM</td>
-              </tr>
-              <tr>
-                <td>Saturday</td>
-                <td>10:00 AM - 2:00 PM</td>
-              </tr>
-              <tr>
-                <td>Sunday</td>
-                <td>Closed</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact Form Section -->
-      <section id="contact-form" class="content-section">
-        <h2 class="section-title">Send Us a Message</h2>
-        <div class="section-content">
-          <div class="content-card">
-            <form id="contactForm">
-              <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required class="form-control">
-              </div>
-              
-              <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required class="form-control">
-              </div>
-              
-              <div class="form-group">
-                <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" class="form-control">
-              </div>
-              
-              <div class="form-group">
-                <label for="subject">Subject:</label>
-                <select id="subject" name="subject" class="form-control">
-                  <option value="appointment">Schedule an Appointment</option>
-                  <option value="question">General Question</option>
-                  <option value="feedback">Feedback</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              
-              <div class="form-group">
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="5" required class="form-control"></textarea>
-              </div>
-              
-              <div class="form-group form-check">
-                <input type="checkbox" id="newsletter" name="newsletter" class="form-check-input">
-                <label for="newsletter" class="form-check-label">Subscribe to our newsletter</label>
-              </div>
-              
-              <button type="submit" class="cta-button">Send Message</button>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      <!-- Map Section -->
-      <section id="map" class="content-section">
-        <h2 class="section-title">Find Us</h2>
-        <div class="section-content">
-          <div class="content-card">
-            <!-- Placeholder for map - in a real site, this would be an embedded Google Map or similar -->
-            <div class="map-placeholder">
-              <p class="map-placeholder">
-                Interactive Map Would Be Displayed Here<br>
-                <small>(For demonstration purposes only)</small>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Emergency Contact Section -->
-      <section id="emergency" class="content-section">
-        <h2 class="section-title">Emergency Eye Care</h2>
-        <div class="section-content">
-          <div class="content-card emergency-card">
-            <span class="card-icon emergency-icon">⚠️</span>
-            <h3 class="card-title">Eye Emergencies</h3>
+            <span class="card-icon">📞</span>
+            <h3 class="card-title">Phone</h3>
             <p class="card-description">
-              If you are experiencing an eye emergency such as sudden vision loss, eye pain, or injury,
-              please call our emergency line at <a href="tel:8009999999"><strong>800-999-9999</strong></a>.
-              <br><br>
-              For after-hours emergencies, please go to your nearest emergency room or urgent care facility.
+              <a href="tel:+256760526155">+256 760526155</a><br />
+              For appointments:
+              <a href="tel:+256786132110">+256 786132110</a>
+            </p>
+          </div>
+          <div class="content-card">
+            <span class="card-icon">✉️</span>
+            <h3 class="card-title">Email</h3>
+            <p class="card-description">
+              <a href="mailto:sehtvision@gmail.com">sehtvision@gmail.com</a><br />
+              <a href="mailto:info@dralexkisitu.com">info@dralexkisitu.com</a>
+            </p>
+          </div>
+          <div class="content-card">
+            <span class="card-icon">📍</span>
+            <h3 class="card-title">Address</h3>
+            <p class="card-description">P.O BOX 43, Jinja</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="map" class="content-section">
+      <h2 class="section-title">Find Us</h2>
+      <div class="section-content">
+        <div class="content-card">
+          <div class="map-placeholder">
+            <iframe title="Google Map Location" width="100%" height="420" style="
+                width: 100%;
+                height: 420px;
+                border: 0;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+              " loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=0.447857,33.202612&z=15&output=embed">
+            </iframe>
+            <p class="map-caption">
+              <small>Location: 0.447857, 33.202612 (Jinja, Uganda)</small>
             </p>
           </div>
         </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer id="site-footer" class="site-footer">
-      <div class="footer-content">
-        <p>&copy; 2025 Dr. Alex Kisitu. All rights reserved.</p>
-        <ul class="footer-links">
-          <li><a href="#" class="footer-link">Privacy Policy</a></li>
-          <li><a href="#" class="footer-link">Terms of Service</a></li>
-          <li><a href="contact.html" class="footer-link">Contact</a></li>
-        </ul>
       </div>
-    </footer>
-  </div>
-  
+    </section>
+    
+    <section id="office-hours" class="content-section">
+      <h2 class="section-title">Office Hours</h2>
+      <div class="section-content">
+        <div class="content-card">
+          <table class="hours-table">
+            <tr>
+              <th>Day</th>
+              <th>Hours</th>
+            </tr>
+            <tr>
+              <td>Monday</td>
+              <td>9:00 AM - 5:00 PM</td>
+            </tr>
+            <tr>
+              <td>Tuesday</td>
+              <td>9:00 AM - 5:00 PM</td>
+            </tr>
+            <tr>
+              <td>Wednesday</td>
+              <td>9:00 AM - 7:00 PM</td>
+            </tr>
+            <tr>
+              <td>Thursday</td>
+              <td>9:00 AM - 5:00 PM</td>
+            </tr>
+            <tr>
+              <td>Friday</td>
+              <td>9:00 AM - 5:00 PM</td>
+            </tr>
+            <tr>
+              <td>Saturday</td>
+              <td>10:00 AM - 2:00 PM</td>
+            </tr>
+            <tr>
+              <td>Sunday</td>
+              <td>Closed</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+    
+    <section id="contact-form" class="content-section">
+      <h2 class="section-title">Send Us a Message</h2>
+      <div class="section-content">
+        <div class="content-card">
+          <form id="contactForm" style="width:50%; min-width:300px; margin-left:0;">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" required class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" required class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone:</label>
+              <input type="tel" id="phone" name="phone" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject:</label>
+              <select id="subject" name="subject" class="form-control">
+                <option value="appointment">Schedule an Appointment</option>
+                <option value="question">General Question</option>
+                <option value="feedback">Feedback</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message:</label>
+              <textarea id="message" name="message" rows="5" required class="form-control"></textarea>
+            </div>
+            <div class="form-group form-check">
+              <input type="checkbox" id="newsletter" name="newsletter" class="form-check-input" />
+              <label for="newsletter" class="form-check-label">Subscribe to our newsletter</label>
+            </div>
+            <button type="submit" class="cta-button">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    
+    <section id="emergency" class="content-section">
+      <h2 class="section-title">Emergency Eye Care</h2>
+      <div class="section-content">
+        <div class="content-card emergency-card">
+          <span class="card-icon emergency-icon">⚠️</span>
+          <h3 class="card-title">Eye Emergencies</h3>
+          <p class="card-description">
+            If you are experiencing an eye emergency such as sudden vision
+            loss, eye pain, or injury, please call our emergency line at
+            <a href="tel:8009999999"><strong>800-999-9999</strong></a>. <br /><br />
+            For after-hours emergencies, please go to your nearest emergency
+            room or urgent care facility.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
   <!-- Back to top button -->
   <a href="#" class="back-to-top" title="Back to top">↑</a>
+
 </body>
 </html>

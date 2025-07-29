@@ -1,0 +1,20 @@
+<div class="trace-header">
+  <span>Trace Log</span>
+  <button class="trace-copy" aria-label="Copy logs">Copy</button>
+  <button class="trace-clear" aria-label="Clear logs">Clear</button>
+  <button class="trace-export" aria-label="Export logs">Export</button>
+  <button class="trace-toggle" aria-label="Collapse log">Collapse</button>
+</div>
+<div class="trace-controls">
+  <input type="text" class="trace-search" placeholder="Filter logs..." aria-label="Filter logs">
+  <select class="trace-level-filter" aria-label="Filter by level">
+    <option value="all">All</option>
+    <option value="info">Info</option>
+    <option value="warning">Warning</option>
+    <option value="error">Error</option>
+    <option value="success">Success</option>
+  </select>
+</div>
+<div class="trace-log">
+  <!-- Most recent log entries appear at the top -->
+</div>
