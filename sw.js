@@ -66,7 +66,7 @@ self.addEventListener('fetch', (event) => {
           console.log('Service Worker: Serving from cache:', event.request.url);
           return response;
         }
-        
+
         // Otherwise fetch from network
         console.log('Service Worker: Fetching from network:', event.request.url);
         return fetch(event.request)
@@ -76,26 +76,27 @@ self.addEventListener('fetch', (event) => {
               return response;
             }
 
-            // Clone the response for cache (response can only be consumed once)
-            const responseToCache = response.clone();
-
-            // Cache the new response
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-                console.log('Service Worker: Cached new resource:', event.request.url);
-              });
+            // Do not cache HEAD requests (Cache.put does not support them)
+            if (event.request.method !== 'HEAD') {
+              // Clone the response for cache (response can only be consumed once)
+              const responseToCache = response.clone();
+              caches.open(CACHE_NAME)
+                .then((cache) => {
+                  cache.put(event.request, responseToCache);
+                  console.log('Service Worker: Cached new resource:', event.request.url);
+                });
+            }
 
             return response;
           })
           .catch((error) => {
             console.log('Service Worker: Network fetch failed:', error);
-            
+
             // Return offline page for navigation requests
             if (event.request.mode === 'navigate') {
               return caches.match('/index.html');
             }
-            
+
             // For other requests, you could return a default offline response
             return new Response('Offline - Content not available', {
               status: 503,

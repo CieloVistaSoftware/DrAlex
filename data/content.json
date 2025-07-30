@@ -251,9 +251,8 @@
       "description": "We're here to help with all your eye care needs. Contact us today to schedule your appointment or ask any questions."
     },
     "chat": {
-      "title": "Chat With Us",
-      "subtitle": "Get instant support from our team",
-      "description": "Live chat functionality coming soon. For immediate assistance, please call us.",
+      "title": "Chat With Us",      
+     
       "fallback": {
         "text": "Contact Us Instead",
         "link": "#contact"

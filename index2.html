@@ -13,12 +13,20 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <!-- External JavaScript -->
-  <script src="js/chat-widget.js"></script> <!-- Load ChatWidget first -->
-  <script src="js/wc-claude-chat-component.js"></script> <!-- Then the web component -->
-  <script src="js/app.js"></script>
+
   <!-- External Stylesheets -->
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Component System - Load FIRST -->
+  <script src="js/component-system.js"></script>
+  <script src="js/content-driven-components.js"></script>
+  
+  <!-- Chat Widget Scripts -->
+  <script src="js/chat-widget.js"></script>
+  <script src="js/wc-claude-chat-component.js"></script>
+  
+  <!-- Main App Script -->
+  <script src="js/app-with-components.js"></script>
 </head>
 
 <body data-theme="ocean" data-layout="left-nav" data-mode="dark" class="theme-ocean dark-mode">
@@ -68,9 +76,66 @@
     </div>
   </div>
 
-  <!-- External JavaScript -->
-  <script src="js/wc-claude-chat-component.js"></script>
-  <script src="js/app.js"></script>
+  <!-- Component Status Display (for debugging) -->
+  <div id="component-status" style="
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    z-index: 1000;
+    max-width: 200px;
+    display: none;
+  ">
+    <div id="component-count">Components: 0/0</div>
+    <button onclick="this.parentElement.style.display='none'" style="float:right;background:none;border:none;color:white;cursor:pointer;">×</button>
+  </div>
+
+  <script>
+    // Show component status for debugging
+    document.addEventListener('component-loaded', (e) => {
+      const status = document.getElementById('component-status');
+      const count = document.getElementById('component-count');
+      if (window.componentSystem) {
+        const systemStatus = window.componentSystem.getStatus();
+        count.textContent = `Components: ${systemStatus.loaded}/${systemStatus.registered}`;
+        if (systemStatus.errors > 0) {
+          count.textContent += ` (${systemStatus.errors} errors)`;
+          status.style.background = 'rgba(255,0,0,0.8)';
+        }
+        status.style.display = 'block';
+        // Auto-hide after 3 seconds if no errors
+        if (systemStatus.errors === 0) {
+          setTimeout(() => {
+            status.style.display = 'none';
+          }, 3000);
+        }
+      }
+    });
+
+    // Show component errors
+    document.addEventListener('component-error', (e) => {
+      console.warn('Component error:', e.detail);
+      const status = document.getElementById('component-status');
+      status.style.background = 'rgba(255,0,0,0.8)';
+      status.style.display = 'block';
+    });
+
+    // Debug function to check component system status
+    window.checkComponents = function() {
+      if (window.componentSystem) {
+        const status = window.componentSystem.getStatus();
+        console.log('Component System Status:', status);
+        return status;
+      } else {
+        console.log('Component system not loaded');
+        return null;
+      }
+    };
+  </script>
 </body>
 
 </html>
