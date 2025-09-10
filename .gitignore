@@ -24,6 +24,11 @@ dist/
 build/
 out/
 
+# Test output
+coverage/
+playwright-report/
+test-results/
+
 # Node.js
 node_modules/
 package-lock.json

@@ -4,7 +4,7 @@
 
 const template = document.createElement('template');
 template.innerHTML = `
-  <style>@import url('tab-control.css');</style>
+  <style>@import url('/js/wc-tab-control/tab-control.css');</style>
   <nav class="tab-nav" aria-label="Main Tabs">
     <div class="tab-list" role="tablist"></div>
   </nav>
@@ -49,7 +49,9 @@ class TabControl extends HTMLElement {
 
   async _fetchConfig(url) {
     try {
-      const resp = await fetch(url);
+      // Try to load from data folder if no explicit URL is provided
+      const finalUrl = url || '/data/content.json';
+      const resp = await fetch(finalUrl);
       const json = await resp.json();
       this.config = json;
     } catch (e) {

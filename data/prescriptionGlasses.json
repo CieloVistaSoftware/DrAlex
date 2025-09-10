@@ -1,0 +1,14 @@
+{
+  "prescriptiontGlasses": {
+    "glasses": [
+      {
+        "id": "256760526155",
+        "label": "red",
+        "Rx": ["2050/200", "2040/100"],
+        "price": "$180.00",
+        "case": "case-1",
+        "image": "/images/placeholder-400x400.svg"
+      }
+    ]
+  }
+}

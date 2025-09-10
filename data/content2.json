@@ -1,0 +1,40 @@
+{
+  "tabs": {
+    "tab-1": {
+      "title": "Services",
+      "content": "<h2>Our Services</h2><p>We offer comprehensive eye care services including exams, contact lens fittings, and treatments for various eye conditions.</p>"
+    },
+    "tab-2": {
+      "title": "About Us",
+      "content": "<h2>About Dr. Alex Kisitu</h2><p>Dr. Alex Kisitu is a certified eye care specialist with over 15 years of experience in ophthalmology and optometry.</p>"
+    }
+  },
+  "team": [
+    {
+      "name": "Dr. Alex Kisitu",
+      "position": "Lead Ophthalmologist",
+      "bio": "Dr. Kisitu graduated from the University of Medical Sciences with honors and has been practicing for over 15 years. He specializes in pediatric eye care and refractive surgery.",
+      "image": "images/team/alex-kisitu.jpg"
+    },
+    {
+      "name": "Dr. Sarah Johnson",
+      "position": "Optometrist",
+      "bio": "Dr. Johnson joined our practice in 2019 and has expertise in contact lens fitting and management of dry eye conditions.",
+      "image": "images/team/sarah-johnson.jpg"
+    }
+  ],
+  "pages": {
+    "privacy-policy": {
+      "title": "Privacy Policy",
+      "content": "<h2>Privacy Policy</h2><p>Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website or use our services.</p><p>We collect information such as your name, contact details, and health information necessary to provide eye care services. This information is kept secure and confidential.</p>"
+    },
+    "terms-of-service": {
+      "title": "Terms of Service",
+      "content": "<h2>Terms of Service</h2><p>By accessing this website, you agree to comply with these Terms of Service. These terms outline the rules for using our website and services.</p><p>Our services are provided 'as is' without warranties of any kind. Appointments must be canceled at least 24 hours in advance to avoid cancellation fees.</p>"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "content": "<h2>Contact Us</h2><p>We'd love to hear from you! Please use the contact information below to get in touch with our office.</p><p><strong>Address:</strong> 123 Eye Care Lane, Jinja, Uganda<br><strong>Phone:</strong> +256 123 456 789<br><strong>Email:</strong> info@dralexkisitu.com</p><p>Office Hours: Monday-Friday 8am-5pm, Saturday 9am-1pm, Closed Sunday</p>"
+    }
+  }
+}

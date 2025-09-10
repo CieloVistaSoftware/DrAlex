@@ -55,3 +55,33 @@
   color: #b00;
   font-weight: bold;
 }
+
+/* Footer styles */
+.site-footer {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem 0;
+  background: #222;
+  color: #ccc;
+}
+.footer-nav {
+  margin-bottom: 0.5rem;
+}
+.footer-link {
+  margin: 0 1rem;
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.footer-link:hover {
+  color: #6366f1;
+}
+.footer-copyright {
+  margin-top: 0.5rem;
+  font-size: 0.9em;
+}
+.footer-anchor {
+  margin-top: 4rem;
+}

@@ -1,0 +1,23 @@
+{
+  "cases": [
+    {
+      "id": "case-1",
+      "title": "Name 1",
+      "description": "A typical case.",
+      "status": "on order",
+      "price":"$100.00"
+    },
+    {
+      "id": "Name 2",
+      "title": "Case 2: Allergic Reaction",
+      "description": "A padded case",
+      "status": "ongoing"
+    },
+    {
+      "id": "case-3",
+      "title": "Case 3: Stomach Flu",
+      "description": "Leather case",
+      "status": "resolved"
+    }
+  ]
+}

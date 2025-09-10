@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tab Control Demo with Data Content</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.5;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      background: #222;
+      color: #eee;
+    }
+    
+    h1 {
+      margin-bottom: 2rem;
+      color: #6366f1;
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+    }
+    
+    .demo-container {
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    /* For debugging */
+    .debug-panel {
+      background: #333;
+      border: 1px solid #555;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 2rem;
+      font-family: monospace;
+      white-space: pre-wrap;
+      font-size: 0.9rem;
+    }
+
+    /* Footer styles */
+    footer {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid #444;
+      text-align: center;
+    }
+
+    footer ul {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem 0;
+    }
+
+    footer a {
+      color: #6366f1;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #10b981;
+      text-decoration: underline;
+    }
+  </style>
+  <!-- Import tab component -->
+  <script type="module" src="../js/wc-tab-control/tab-control.js"></script>
+</head>
+<body>
+  <h1>Tab Control Demo with Data Content</h1>
+  
+  <p>This demo shows the tab control loading content from data/content.json.</p>
+
+  <div class="demo-container">
+    <h2>Service Tabs</h2>
+    <!-- Use tab control with src attribute -->
+    <tab-control src="/data/content.json"></tab-control>
+  </div>
+
+  <div class="demo-container">
+    <h2>Footer Links</h2>
+    <footer>
+      <ul id="footer-links">
+        <!-- Footer links will be populated by content.json -->
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <p id="footer-copyright">© 2025 Dr. Alex Kisitu. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <div class="debug-panel" id="debug-output">Loading content...</div>
+
+  <script>
+    // Simple script to display the loaded data
+    document.addEventListener('DOMContentLoaded', async () => {
+      const debugOutput = document.getElementById('debug-output');
+      
+      try {
+        const response = await fetch('/data/content.json');
+        
+        if (!response.ok) {
+          throw new Error(`Failed to load content.json: ${response.status} ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        
+        // Show the structure in debug panel
+        debugOutput.textContent = JSON.stringify({
+          contentLoaded: true,
+          topLevelKeys: Object.keys(data),
+          services: data.services?.length || 0,
+          navigation: data.navigation?.length || 0,
+          footer: data.footer ? 'Present' : 'Missing'
+        }, null, 2);
+        
+        // Populate footer links if available
+        if (data.footer?.links) {
+          const footerLinks = document.getElementById('footer-links');
+          footerLinks.innerHTML = '';
+          
+          data.footer.links.forEach(link => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = link.url || `#${link.id}`;
+            a.textContent = link.label;
+            li.appendChild(a);
+            footerLinks.appendChild(li);
+          });
+        }
+        
+      } catch (error) {
+        debugOutput.textContent = `Error: ${error.message}`;
+        debugOutput.style.color = '#f87171';
+      }
+    });
+    
+    // Listen for tab component events
+    document.addEventListener('tab-error', (e) => {
+      console.error('Tab error:', e.detail);
+      document.getElementById('debug-output').textContent += '\n\nTab Error: ' + JSON.stringify(e.detail, null, 2);
+    });
+    
+    document.addEventListener('tab-activated', (e) => {
+      console.log('Tab activated:', e.detail);
+    });
+    
+    document.addEventListener('tab-content-loaded', (e) => {
+      console.log('Tab content loaded:', e.detail);
+    });
+  </script>
+</body>
+</html>

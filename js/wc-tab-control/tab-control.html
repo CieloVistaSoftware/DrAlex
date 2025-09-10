@@ -4,11 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tab Control Demo</title>
-  <script type="module" src="js/wc-tab-control/tab-control.js"></script>
-  <link rel="stylesheet" href="js/wc-tab-control/tab-control.css">
+  <script type="module" src="tab-control.js"></script>
+  <link rel="stylesheet" href="tab-control.css">
 </head>
 <body>
   <tab-control config='{"tabs":[{"id":"tab-1","label":"Tab 1","panel":"panel-1","content":"data:text/html,<p>Tab1</p>"},
     {"id":"tab-2","label":"Tab 2","panel":"panel-2","content":"data:text/html,<p>Tab2</p>"}],"defaultTab":"tab-1"}'></tab-control>
+
+  <footer class="site-footer">
+    <nav class="footer-nav">
+      <a href="#privacy-policy" class="footer-link">Privacy Policy</a>
+      <a href="#terms-of-service" class="footer-link">Terms of Service</a>
+      <a href="#contact" class="footer-link">Contact</a>
+    </nav>
+    <div class="footer-copyright">Specialist. All rights reserved.</div>
+  </footer>
+
+  <!-- Footer anchor targets -->
+  <section id="privacy-policy" class="footer-anchor"></section>
+  <section id="terms-of-service" class="footer-anchor"></section>
+  <section id="contact" class="footer-anchor"></section>
+
+  <script>
+  // Smooth scroll for footer links
+  const footerLinks = document.querySelectorAll('footer nav a');
+  footerLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').replace('#','');
+      const target = document.getElementById(targetId);
+      if(target) {
+        e.preventDefault();
+        target.scrollIntoView({behavior: 'smooth'});
+      }
+    });
+  });
+  </script>
 </body>
 </html>

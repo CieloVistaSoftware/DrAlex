@@ -1,7 +1,36 @@
-Kisitu;
+# Sight Eternal Hospitals
 
- Here are new instructions for you as we need to change the way we communicate via emails and or linked in.  We will create issues instead. I will then take this repository private so the outside world will not see our work.
+Welcome to the official website for Sight Eternal Hospitals eye care practice. This site is a modern, single-page application (SPA) designed to provide information about services, contact details, and interactive features for patients and visitors.
 
- [How to create an issue](https://github.com/CieloVistaSoftware/DrAlex/issues/1) From now on we will only work on issues logged to this project.  That way it keeps both of us on the same page, no emails, or linked in messages.
+## Features
+- **Single Page Application (SPA):** All content is dynamically loaded from JSON, ensuring a fast and seamless user experience.
+- **Modern Chat Widget:** Communicate directly with the clinic using a custom chat component.
+- **Responsive Design:** Optimized for desktop and mobile devices.
+- **Accessible UI:** Built with accessibility and usability in mind.
+- **Service Worker:** Offline support and caching for improved performance.
 
- Each day when I start work I will look at the issues first and provide you feedback on work or start a new issue.  
+## Project Structure
+- `index.html` — Main entry point for the SPA
+- `css/` — All stylesheets, including layout, components, and chat widget styles
+- `js/` — JavaScript files for SPA logic, chat widget, and navigation
+- `data/` — JSON content for dynamic page rendering
+- `zzz/` — Archived legacy files and components
+- `docs/` — Documentation and design notes
+
+## Getting Started
+1. **Install dependencies:**
+   ```powershell
+   npm install
+   ```
+2. **Start the development server:**
+   ```powershell
+   npm start
+   ```
+3. **Open your browser:**
+   Visit [http://localhost:5000](http://localhost:5000) (or the port shown in your terminal)
+
+## Contributing
+Contributions are welcome! Please open issues or submit pull requests for improvements or bug fixes.
+
+## License
+This project is maintained by CieloVistaSoftware. See `LICENSE` for details.

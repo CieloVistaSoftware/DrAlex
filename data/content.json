@@ -1,10 +1,20 @@
 {
   "site": {
-    "title": "Dr. Alex Kisitu - Eye Care Specialist",
-    "description": "Professional eye care services by Dr. Alex Kisitu - Comprehensive eye exams, contact lens fittings, and prescription glasses in Jinja, Uganda",
-    "keywords": "eye care, optometrist, glasses, eye exams, Dr. Alex Kisitu, Jinja, Uganda, vision care",
-    "author": "Dr. Alex Kisitu",
-    "copyright": "2025 Dr. Alex Kisitu. All rights reserved."
+    "title": "SEHT-Smart Eye Health Technologies - Eye Care Specialist",
+    "description": "Professional eye care services by SEHT-Smart Eye Health Technologies - Comprehensive eye exams, contact lens fittings, and prescription glasses in Jinja, Uganda",
+    "keywords": "eye care, optometrist, glasses, eye exams, SEHT-Smart Eye Health Technologies, Jinja, Uganda, vision care",
+    "author": "SEHT-Smart Eye Health Technologies",
+    "copyright": "2025 SEHT-Smart Eye Health Technologies. All rights reserved.",
+    "logo": "images/SEHTTitle.png",
+    "logoAlt": "SEHT Clinic Logo"
+  },
+  "header": {
+    "title": "SEHT",
+    "subtitle": "Smart Eye Health Technologies",
+    "description": "Professional eye care services in Jinja, Uganda. Comprehensive eye exams, contact lens fittings, and prescription glasses with the latest technology and personalized care.",
+    "logo": "images/SEHTTitle.png",
+    "logoAlt": "SEHT Clinic Logo",
+    "tagline": "At SEHT, Vision is Possible"
   },
   "contact": {
     "phones": [
@@ -46,69 +56,60 @@
       "id": "home",
       "label": "Home",
       "icon": "🏠",
-      "url": "#home",
-      "title": "Dr. Alex Kisitu - Eye Care Specialist"
+      "title": "SEHT-Smart Eye Health Technologies - Eye Care Specialist"
     },
     {
       "id": "about",
       "label": "About",
       "icon": "👤",
-      "url": "#about",
-      "title": "About Our Team - Dr. Alex Kisitu"
+      "title": "About Our Team - SEHT-Smart Eye Health Technologies"
     },
     {
       "id": "services",
       "label": "Services",
       "icon": "🔬",
-      "url": "#services",
-      "title": "Our Services - Dr. Alex Kisitu"
+      "title": "Our Services - SEHT-Smart Eye Health Technologies"
     },
     {
       "id": "portfolio",
       "label": "Portfolio",
       "icon": "📁",
-      "url": "#portfolio",
-      "title": "Patient Stories - Dr. Alex Kisitu"
+      "title": "Patient Stories - SEHT-Smart Eye Health Technologies"
     },
     {
       "id": "contact",
       "label": "Contact",
       "icon": "📞",
-      "url": "#contact",
-      "title": "Contact Us - Dr. Alex Kisitu"
+      "title": "Contact Us - SEHT-Smart Eye Health Technologies"
     },
     {
       "id": "chat",
       "label": "Chat",
       "icon": "💬",
-      "url": "#chat",
-      "title": "Chat With Us - Dr. Alex Kisitu"
+      "title": "Chat With Us - SEHT-Smart Eye Health Technologies"
     }
   ],
   "footer": {
     "links": [
       {
         "label": "Privacy Policy",
-        "url": "#privacy",
         "id": "privacy"
       },
       {
         "label": "Terms of Service",
-        "url": "#terms",
         "id": "terms"
       },
       {
         "label": "Contact",
-        "url": "#contact",
         "id": "contact"
       }
     ]
   },
   "team": [
     {
-      "name": "Dr. Alex Kisitu",
-      "role": "Lead Optometrist",
-      "description": "Dr. Alex Kisitu is a dedicated eye care professional with years of experience in providing comprehensive vision care services. Our practice focuses on personalized care and the latest in eye care technology.",
+      "name": "SEHT-Smart Eye Health Technologies",
+      "role": "Lead Eye Care Provider",
+      "description": "SEHT-Smart Eye Health Technologies is dedicated to providing comprehensive vision care services with years of experience. Our practice focuses on personalized care and the latest in eye care technology.",
       "specialties": ["Comprehensive Eye Exams", "Contact Lens Fitting", "Vision Therapy"]
     },
     {
@@ -183,38 +184,51 @@
   "testimonials": [
     {
       "id": 1,
-      "name": "Sarah Johnson",
-      "relationship": "Patient since 2020",
+      "name": "Ekweny Arthur",
+      "relationship": "Patient from Aria",
       "rating": 5,
       "text": "Dr. Alex completely changed my life! I had been struggling with poor vision for years. After my first visit, I was fitted with the perfect prescription glasses. The difference was immediate and amazing!",
       "service": "Prescription Glasses"
     },
     {
       "id": 2,
-      "name": "Michael Chen",
-      "relationship": "Patient since 2019",
+      "name": "Mulinda Paul",
+      "relationship": "Patient from Entebbe",
       "rating": 5,
       "text": "The team at Dr. Alex's practice is incredibly professional and caring. They detected my glaucoma early and helped me manage it effectively. I'm grateful for their expertise.",
       "service": "Eye Disease Management"
     },
     {
       "id": 3,
-      "name": "Amanda Foster",
-      "relationship": "Patient since 2021",
+      "name": "Nabatta Edna",
+      "relationship": "Patient from Kampala",
       "rating": 5,
       "text": "As a mother of three, finding time for eye care was challenging. Dr. Alex's flexible scheduling and comprehensive family care made it so much easier. All my children love coming here!",
       "service": "Pediatric Eye Care"
+    },
+    {
+      "id": 4,
+      "name": "Dr. Lisbon",
+      "relationship": "Well-wisher from Mengo Hospital",
+      "rating": 5,
+      "text": "I've been referring my patients to Dr. Alex for years. His expertise in eye care and dedication to patient health is exemplary. We're fortunate to have such a skilled professional in our medical community.",
+      "service": "Professional Collaboration"
     }
   ],
   "pages": {
+    "prescription-glasses": {
+      "title": "Prescription Glasses",
+      "subtitle": "Find the perfect pair for your style",
+      "description": "Explore our wide selection of frames and lenses to suit your needs."
+    },
     "home": {
       "hero": {
-        "title": "Dr. Alex Kisitu",
+        "title": "SEHT-Smart Eye Health Technologies",
         "subtitle": "Personal Eye Care just for you!",
         "description": "Providing comprehensive eye care services with the latest technology and personalized attention. Your vision is our priority.",
-        "cta": {
+      "cta": {
           "text": "Schedule Appointment",
-          "link": "#contact"
+          "id": "contact"
         }
       },
       "featuredServices": [
@@ -224,7 +238,7 @@
       ]
     },
     "about": {
-      "title": "About Dr. Alex Kisitu",
+      "title": "About SEHT-Smart Eye Health Technologies",
       "subtitle": "Dedicated to Your Vision Health",
       "description": "Our practice combines years of experience with the latest technology to provide exceptional eye care for patients of all ages.",
       "mission": "To provide personalized, comprehensive eye care that improves and preserves our patients' vision and overall quality of life.",

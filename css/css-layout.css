@@ -1,0 +1,413 @@
+/* ==== PROPER TWO-COLUMN LAYOUT - FIXED ==== */
+
+/* Reset any conflicting styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Content grid */
+.content-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+  gap: 1.5rem !important;
+  margin-top: 2rem !important;
+  padding: 0 2rem !important; /* Add horizontal padding to content grid */
+  box-sizing: border-box !important;
+}
+
+html, body {
+  height: 100vh;
+  overflow-x: hidden;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #050605 !important; /* Changed to #050605 */
+  color: var(--dark-text-primary, #ffffff) !important;
+  box-sizing: border-box !important;
+}
+
+/* ==== MAIN TWO-COLUMN GRID ==== */
+.two-column-layout {
+  display: grid !important; /* Use grid for proper layout */
+  grid-template-columns: 250px 1fr !important; /* Adjusted to match exactly the navigation width */
+  grid-gap: 0 !important; /* Removed gap between navigation and main content */
+  min-height: 100vh !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  /* Removed position: fixed, top, left so layout grows with content */
+  background: #050605 !important; /* Changed to #050605 */
+  overflow-x: hidden !important; /* Prevent horizontal overflow */
+}
+
+/* Force left nav layout globally (merged from enforce-left-nav.css) */
+body {
+  --layout: left-nav !important;
+}
+
+/* Hide conflicting containers (merged from enforce-left-nav.css) */
+.site-container {
+  display: none !important;
+}
+
+/* ==== LEFT COLUMN - NAVIGATION ==== */
+/* Navigation styles moved to css-nav.css */
+
+/* ==== RIGHT COLUMN - MAIN CONTENT ==== */
+.main-column {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
+  /* Removed height: 100vh so content and footer can grow */
+  overflow-y: auto !important;
+  overflow-x: hidden !important; /* Prevent horizontal overflow */
+  background: #050605 !important; /* Changed to #050605 */
+  align-items: stretch !important; /* Stretch children to fill width */
+  width: 100% !important;          /* Ensure full width in the grid cell */
+  max-width: 100% !important;       /* Prevent exceeding container width */
+  box-sizing: border-box !important; /* Include padding in width */
+  padding: 0 !important; /* Remove any padding that might cause offset */
+  margin: 0 !important;  /* Remove margins that might cause offset */
+  min-width: 0 !important; /* Critical fix to prevent overflow */
+  margin-left: 0 !important; /* Ensure no offset from left */
+}
+
+/* Remove padding from main-column but add it to child elements except header */
+.main-column > *:not(.header) {
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+/* Ensure main-column doesn't override header background */
+.main-column > header.header,
+.main-column > .header {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  align-self: stretch !important;
+  box-sizing: border-box !important; /* Ensure width includes padding and border */
+  position: relative !important; /* Ensures proper layout context */
+  left: 0 !important;
+  right: 0 !important;
+  overflow-x: hidden !important; /* Prevent horizontal overflow */
+}
+
+/* ==== HEADER ==== */
+/* Header styles moved to css-header.css */
+
+/* ==== MAIN CONTENT ==== */
+.main-content {
+  flex: 1 !important;
+  padding: 3rem 0 !important; /* Added more top padding for spacing after header */
+  background: #050605 !important; /* Changed to #050605 */
+  color: var(--dark-text-primary, #ffffff) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important; /* Prevent horizontal overflow */
+  font-size: 0.95rem !important;
+  width: 100% !important;
+  max-width: 100% !important; /* Allow full width in container */
+  margin: 0 !important; /* Remove auto margin to prevent offset */
+  box-sizing: border-box !important; /* Ensure padding is included in width */
+  position: relative !important; /* Establish positioning context */
+}
+
+/* Page sections - only show active */
+.page-section {
+  display: none !important;
+  width: 100% !important; 
+  box-sizing: border-box !important;
+  max-width: 100% !important; /* Changed from 1200px to 100% to prevent offset */
+  margin: 0 !important; /* Changed from auto to 0 to prevent centering offset */
+  padding: 1.5rem 0 !important; /* Remove horizontal padding to prevent offset */
+}
+
+.page-section.active {
+  display: block !important;
+  animation: fadeIn 0.3s ease-out !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section titles */
+.section-title {
+  font-size: 1.25rem !important;
+  margin-bottom: 2rem !important;
+  color: var(--primary, #6366f1) !important;
+  padding: 0 2rem 0.5rem 2rem !important; /* Add horizontal padding */
+  box-sizing: border-box !important;
+}
+
+/* Content cards */
+.content-card {
+  background: #050605 !important; /* Changed to #050605 */
+  padding: 2rem !important;
+  border-radius: 12px !important;
+  border-left: 3px solid var(--primary, #6366f1) !important;
+  margin-bottom: 1.5rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.content-card:hover {
+  transform: translateY(-2px) !important;
+  border-left-color: var(--accent, #10b981) !important;
+}
+
+.card-title {
+  font-size: 1rem !important;
+  margin-bottom: 1rem !important;
+  color: var(--primary, #6366f1) !important;
+}
+
+.card-description {
+  color: var(--dark-text-secondary, #cccccc) !important;
+  line-height: 1.6 !important;
+}
+
+/* Content grid */
+.content-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  gap: 2rem !important;
+  margin-top: 2rem !important;
+  padding: 0 2rem !important; /* Add horizontal padding */
+  box-sizing: border-box !important;
+}
+
+/* Hero section */
+.hero-section {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background: linear-gradient(135deg, var(--primary, #6366f1) 0%, var(--secondary, #9333ea) 100%) !important;
+  border-radius: 12px !important;
+  padding: 4rem 2rem !important;
+  margin: 0 2rem !important; /* Add horizontal margin */
+  box-sizing: border-box !important;
+  width: calc(100% - 4rem) !important; /* Account for margins */
+  margin: 2rem 0 !important;
+  color: white !important;
+  gap: 2rem !important;
+}
+
+.hero-content {
+  flex: 1 !important;
+  text-align: left !important;
+}
+
+.hero-image {
+  flex: 1 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.clinic-image {
+  max-width: 100% !important;
+  max-height: 300px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+.hero-title {
+  color: white !important;
+  margin-bottom: 1rem !important;
+  font-size: 2.5rem !important;
+}
+
+.hero-description {
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-bottom: 2rem !important;
+  line-height: 1.6 !important;
+}
+
+/* ==== FOOTER ==== */
+/* Footer styles moved to css-footer.css */
+
+/* ==== NAVIGATION FIXES (merged from fixed-navigation.css) ==== */
+/* Fix for jumping navigation issue */
+.main-column {
+  padding-left: 0 !important; /* Remove padding as grid handles layout */
+  box-sizing: border-box !important;
+}
+
+/* Ensure links don't cause page jumps */
+a {
+  scroll-behavior: auto !important;
+}
+
+/* Disable smooth scrolling */
+html, body {
+  scroll-behavior: auto !important;
+}
+
+/* Prevent scroll-into-view behavior */
+* {
+  scroll-margin-top: 0 !important;
+}
+
+/* ==== MOBILE RESPONSIVE ==== */
+@media (max-width: 1024px) {
+  .two-column-layout {
+    display: grid !important; /* Keep as grid to maintain layout */
+    grid-template-columns: 280px 1fr !important; /* Keep left nav visible */
+  }
+  
+  .main-column {
+    width: 100% !important;
+    padding: 0 1rem !important;
+    min-width: 0 !important; /* Ensure content can shrink properly */
+  }
+}
+
+/* Navigation media queries moved to css-nav.css */
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1.5rem !important;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .welcome-title {
+    font-size: 2rem !important;
+  }
+
+  .hero-section {
+    padding: 2.5rem 1rem !important;
+    flex-direction: column !important;
+  }
+  
+  .hero-content {
+    text-align: center !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .hero-title {
+    font-size: 2rem !important;
+  }
+  
+  .clinic-image {
+    max-width: 100% !important;
+    max-height: 200px !important;
+  }
+}
+
+/* ==== SCROLLBAR STYLING ==== */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #0061A4 var(--dark-bg-secondary, #2d2d2d);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-bg-secondary, #2d2d2d);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0061A4;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1AB9D2; /* Lighter blue on hover */
+}
+
+/* ==== ENSURE PROPER STACKING ==== */
+.site-container,
+.site-content {
+  display: none !important; /* Hide any conflicting containers */
+}
+
+/* Override any other layout styles */
+body.dark-mode {
+  background: var(--dark-bg-primary, #1a1a1a) !important;
+  color: var(--dark-text-primary, #ffffff) !important;
+}
+
+/* Mobile toggle media queries moved to css-nav.css */
+
+/* Large screen navigation styles moved to css-nav.css */
+
+/* Small screen navigation styles moved to css-nav.css */
+
+@media (max-width: 1366px) {
+  .site-nav.open .main-content,
+  .site-nav.open .content-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .site-nav.open .content-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    margin: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+  }
+}
+@media (max-width: 400px) {
+  .site-nav.open .main-content,
+  .site-nav.open .content-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .site-nav.open .content-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    margin: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Desktop and mobile styles consolidated */
+@media (min-width: 1025px) {
+  .two-column-layout {
+    display: grid !important;
+    grid-template-columns: 250px 1fr !important; /* Standard desktop width - matches nav width */
+    grid-gap: 1rem !important; /* Keep 1rem gap for desktop */
+    width: 100vw !important;
+    box-sizing: border-box !important;
+  }
+}
+@media (max-width: 1024px) {
+  .two-column-layout {
+    display: grid !important;
+    width: 100vw !important;
+    grid-template-columns: 220px 1fr !important; /* Reduced width for mobile */
+    grid-gap: 1rem !important; /* Keep 1rem gap for mobile */
+    box-sizing: border-box !important;
+  }
+}

@@ -1,0 +1,181 @@
+/* ==== FOOTER STYLES - CLEANED ==== */
+
+/* Site Footer - Desktop */
+.site-footer {
+  background: #050605 !important;
+  padding: 1.5rem 2rem !important;
+  border-top: 1px solid var(--dark-border-color, #1AB9D2) !important;
+}
+
+.footer-content {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  gap: 1.5rem !important;
+}
+
+.footer-left, .footer-center, .footer-right {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.footer-left {
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 1rem !important;
+}
+
+.footer-center {
+  flex-grow: 1 !important;
+  justify-content: center !important;
+}
+
+.footer-right {
+  justify-content: flex-end !important;
+}
+
+.footer-text {
+  margin: 0 !important;
+  color: var(--dark-text-secondary, #cccccc) !important;
+  font-size: calc(var(--base-font-size) * 0.875) !important;
+}
+
+.footer-links {
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  gap: 1.5rem !important;
+  list-style: none !important;
+}
+
+.footer-link {
+  color: var(--link-color, #1AB9D2) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  transition: color 0.3s ease !important;
+  font-size: calc(var(--base-font-size) * 0.875) !important;
+}
+
+.footer-link:hover {
+  color: var(--secondary, #1AB9D2) !important;
+  text-shadow: 0 0 2px rgba(26, 185, 210, 0.3) !important;
+}
+
+/* Theme toggle in footer */
+.theme-toggle-40px {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid var(--dark-border-color, #1AB9D2) !important;
+  border-radius: 8px !important;
+  padding: 0 !important;
+  color: var(--dark-text-primary, #ffffff) !important;
+  cursor: pointer !important;
+  font-size: 1.25rem !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.theme-toggle-40px:hover {
+  background: var(--gradient-primary, linear-gradient(135deg, #0061A4 0%, #1AB9D2 100%)) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Emergency contact styling in footer */
+.footer-left .emergency-contact {
+  margin-top: 0.5rem !important;
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 0.5rem !important;
+  background: rgba(220, 38, 38, 0.15) !important;
+  border: 1px solid rgba(220, 38, 38, 0.5) !important;
+  width: auto !important;
+  max-width: 100% !important;
+}
+
+.footer-left .emergency-title {
+  color: var(--dark-text-primary, #ffffff) !important;
+  font-size: calc(var(--base-font-size) * 0.875) !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.25rem !important;
+}
+
+.footer-left .emergency-phone {
+  color: var(--dark-accent, #f43f5e) !important;
+  font-size: calc(var(--base-font-size) * 1) !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  display: block !important;
+}
+
+/* Footer styles for mobile view */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 0;
+    gap: 1rem !important;
+  }
+  
+  .footer-left, .footer-center, .footer-right {
+    width: 100% !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  
+  .footer-right {
+    margin-top: 0.5rem !important;
+  }
+
+  /* Enhanced footer links for better mobile readability */
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem !important;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .footer-links li {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0.75rem 0;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+  }
+  
+  .footer-links li:last-child {
+    border-bottom: none;
+  }
+
+  .footer-link {
+    display: block;
+    padding: 0.75rem 0;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    line-height: 1.5;
+  }
+  
+  .footer-link:hover {
+    background-color: rgba(26, 185, 210, 0.1);
+  }
+
+  .theme-toggle-40px {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    font-size: 1.2rem !important;
+  }
+  
+  .site-footer {
+    padding-bottom: 1rem;
+  }
+}

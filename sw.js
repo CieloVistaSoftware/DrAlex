@@ -5,12 +5,15 @@ const CACHE_NAME = 'dr-alex-kisitu-v1';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/css/styles.css',
+  '/htmx_index.html',
+  '/css/css-variables.css',
+  '/css/css-base.css',
+  '/css/css-layout.css',
+  '/css/css-components.css',
+  '/css/css-chat.css',
+  '/css/css-footer.css',
   '/data/content.json',
-  '/favicon.svg',
-  '/favicon-32x32.png',
-  '/favicon-16x16.png',
-  '/apple-touch-icon.png'
+  '/favicon.svg'
 ];
 
 // Install event - cache resources

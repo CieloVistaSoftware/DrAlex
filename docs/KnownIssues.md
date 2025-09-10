@@ -8,6 +8,13 @@ now I want to send images to claude chat to ask about it's thoughts which are se
 - Fix API connection failing in chat widget (server is not running on port 3000)
 
 ### Completed
+- ~~Fixed main content offset issue causing improper alignment~~ (2025-09-09)
+- ~~Fixed header width to be 100% and prevented right side content from being cut off~~ (2025-09-09)
+- ~~Made header 7rem tall with compact design and blue gradient~~ (2025-09-10)
+- ~~Moved theme toggle button from header to footer~~ (2025-09-10)
+- ~~Increased SEHT logo size by 50%~~ (2025-09-10)
+- ~~Moved SEHT logo to left side of header with 1rem margin~~ (2025-09-10)
+- ~~Implemented clean two-column grid layout for header with left-aligned logo~~ (2025-09-10)
 - ~~Fix chat widget trace showing in first tab instead of second tab in component-chat-test.html~~ (2025-07-15)
 - ~~Make trace log display messages in reverse order (newest at the top)~~ (2025-07-15)
 - ~~Prevent automatic switching to trace tab when API events occur~~ (2025-07-15)

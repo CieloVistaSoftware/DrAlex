@@ -1,76 +1,353 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="ocean" data-mode="dark">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loading...</title>
-  <meta name="description" content="Loading...">
-  <meta name="keywords" content="eye care, optometrist, glasses, eye exams">
-
-  <!-- Enhanced Favicon Support -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <!-- External JavaScript -->
-  <script src="js/chat-widget.js"></script> <!-- Load ChatWidget first -->
-  <script src="js/wc-claude-chat-component.js"></script> <!-- Then the web component -->
-  <script src="js/app.js"></script>
-  <!-- External Stylesheets -->
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEHT-Smart Eye Health Technologies - Eye Care Specialist</title>
+    <meta name="description" content="Professional eye care services by SEHT-Smart Eye Health Technologies - Comprehensive eye exams, contact lens fittings, and prescription glasses in Jinja, Uganda">
+    <meta name="keywords" content="eye care, optometrist, glasses, eye exams, SEHT-Smart Eye Health Technologies, Jinja, Uganda, vision care">
+    <meta name="author" content="SEHT-Smart Eye Health Technologies">
+    
+    <!-- Preload critical resources for better performance -->
+    <link rel="preload" href="css/css-variables.css" as="style">
+    <link rel="preload" href="css/css-base.css" as="style">
+    <link rel="preload" href="css/css-layout.css" as="style">  
+    <link rel="preload" href="js/theme.js" as="script">
+    
+    <!-- Enhanced Favicon Support -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <!-- Modular CSS - Load in order of importance -->
+    <link rel="stylesheet" href="css/css-variables.css">
+    <link rel="stylesheet" href="css/css-base.css">
+    <link rel="stylesheet" href="css/css-layout.css">
+    <link rel="stylesheet" href="css/css-components.css">
+    <link rel="stylesheet" href="css/clean-header.css">
+    <link rel="stylesheet" href="css/css-chat.css">
+    <link rel="stylesheet" href="css/css-footer.css">
+    <link rel="stylesheet" href="css/css-nav.css">
+   
+    <!-- DNS prefetching for external resources -->
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MedicalBusiness",
+        "name": "SEHT-Smart Eye Health Technologies",
+        "description": "Professional eye care services in Jinja, Uganda",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Jinja",
+            "addressRegion": "Eastern Region",
+            "addressCountry": "UG"
+        },
+        "telephone": "+256760526155",
+        "email": "sehtvision@gmail.com",
+        "url": "https://dralexkisitu.com",
+        "medicalSpecialty": "Optometry",
+        "priceRange": "$$"
+    }
+    </script>
+    
+    <!-- Load theme immediately to prevent flash of wrong theme -->
+    <script src="js/theme.js"></script>
 </head>
 
-<body data-theme="ocean" data-layout="left-nav" data-mode="dark" class="theme-ocean dark-mode">
+<body class="dark-mode" data-mode="dark">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
 
-  <!-- Loading Overlay -->
-  <div class="loading-overlay active" id="loading-overlay">
-    <div class="loading-spinner"></div>
-  </div>
-
-  <!-- Mobile menu toggle -->
-  <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-    <span aria-hidden="true">☰</span>
-  </button>
-
-  <div class="site-container">
-    <!-- Left Navigation - will be populated from JSON -->
-    <nav class="site-nav" id="site-nav" role="navigation" aria-label="Main navigation">
-      <div class="nav-menu">
-        <ul class="nav-list" id="nav-list" role="menubar">
-          <!-- Navigation items will be loaded here -->
-        </ul>
-      </div>
-    </nav>
-
-    <!-- Content Area -->
-    <div class="site-content">
-      <!-- Main Content -->
-      <main class="main-content" id="main-content" role="main" aria-live="polite">
-        <!-- Initial skeleton loading -->
-        <div class="skeleton" style="height: 60px; margin-bottom: 1rem;"></div>
-        <div class="skeleton" style="height: 200px; margin-bottom: 1rem;"></div>
-        <div class="skeleton" style="height: 100px; margin-bottom: 1rem;"></div>
-        <div class="skeleton" style="height: 150px;"></div>
-      </main>
-
-      <!-- Footer - will be populated from JSON -->
-      <footer class="site-footer" id="site-footer" role="contentinfo">
-        <div class="footer-content">
-          <p class="footer-text" id="footer-copyright">Loading...</p>
-          <nav aria-label="Footer navigation">
-            <ul class="footer-links" id="footer-links">
-              <!-- Footer links will be loaded here -->
-            </ul>
-          </nav>
-        </div>
-      </footer>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay active" id="loading-overlay" aria-hidden="true">
+        <div class="loading-spinner" role="status" aria-label="Loading page content"></div>
     </div>
-  </div>
 
-  <!-- External JavaScript -->
-  <script src="js/wc-claude-chat-component.js"></script>
-  <script src="js/app.js"></script>
+    <!-- Mobile menu toggle -->
+    <button 
+        class="mobile-toggle" 
+        id="mobile-toggle" 
+        aria-label="Toggle navigation menu" 
+        aria-expanded="false"
+        aria-controls="site-nav">
+        ≡
+    </button>
+
+    <!-- Two Column Layout Container -->
+    <div class="two-column-layout">
+        
+        <!-- LEFT COLUMN: Navigation -->
+        <nav 
+            class="site-nav" 
+            id="site-nav" 
+            role="navigation" 
+            aria-label="Main navigation">
+            
+            <!-- Navigation Header with Branding -->
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list" id="nav-list" role="menubar" aria-label="Main menu">
+                    <!-- Navigation links will be populated from content.json -->
+                    <li role="none">
+                        <a href="javascript:void(0)" class="nav-link active" data-section="home" role="menuitem" tabindex="0">
+                            [Fallback] Home
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="javascript:void(0)" class="nav-link" data-section="about" role="menuitem" tabindex="-1">
+                            [Fallback] About
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="javascript:void(0)" class="nav-link" data-section="services" role="menuitem" tabindex="-1">
+                            [Fallback] Services
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="javascript:void(0)" class="nav-link" data-section="portfolio" role="menuitem" tabindex="-1">
+                            [Fallback] Portfolio
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="javascript:void(0)" class="nav-link" data-section="contact" role="menuitem" tabindex="-1">
+                            [Fallback] Contact
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="javascript:void(0)" class="nav-link" data-section="chat" role="menuitem" tabindex="-1">
+                            [Fallback] Chat
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Emergency Contact Section moved to footer -->
+        </nav>
+
+        <!-- RIGHT COLUMN: Main Content -->
+        <div class="main-column">
+            
+            <!-- Header with logo and text content - only shown on Home section -->
+            <header class="header header-fixed" role="banner" id="mainHeader">
+                <!-- Logo Element with hover effect for text content -->
+                <div class="logo-container">
+                    <!-- Image and hover overlay container -->
+                    <div class="logo-hover-container">
+                        <img src="images/SEHTTitle.png" 
+                             id="logoImage"
+                             alt="SEHT - Smart Eye Health Technologies" 
+                             class="logo-image">
+                        <!-- Text content overlay - appears on hover -->
+                        <div class="header-content-overlay">
+                            <h1 class="header-title" id="pageTitle">SEHT</h1>
+                            <p class="header-subtitle" id="pageSubtitle">Smart Eye Health Technologies</p>
+                            <p class="header-description" id="pageDescription">
+                                Professional eye care services in Jinja, Uganda. 
+                                Comprehensive eye exams, contact lens fittings, and prescription glasses 
+                                with the latest technology and personalized care.
+                            </p>
+                            <p class="header-tagline" id="pageTagline">At SEHT, Vision is Possible</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Fallback if image doesn't load -->
+                    <div id="logoFallback" class="logo-fallback">
+                        SEHT
+                        <div class="logo-fallback-text">Smart Eye Health Technologies</div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Standalone header has been removed -->
+
+            <!-- Main Content Area -->
+            <main 
+                class="main-content" 
+                id="main-content" 
+                role="main" 
+                aria-live="polite"
+                tabindex="-1">
+                
+                <!-- Home Page Section -->
+                <section class="page-section active" id="home">
+                    <!-- Home content is displayed through the header with hover overlay -->
+                    <!-- Services content has been removed from home to avoid duplication -->
+                </section>
+
+                <!-- About Page Section -->
+                <section class="page-section" id="about">
+                    <h2 class="section-title">[Fallback] About Section</h2>
+                    <div class="content-card">
+                        <h3 class="card-title">[Fallback] Team Member</h3>
+                        <p class="card-description">Failed to load bio from content.json</p>
+                    </div>
+                </section>
+
+                <!-- Services Page Section -->
+                <section class="page-section" id="services">
+                    <h2 class="section-title">Our Services</h2>
+                    <p class="section-description">We offer a comprehensive range of eye care services to meet your needs.</p>
+                    
+                    <!-- Tab Control Component -->
+                    <tab-control src="/data/content.json"></tab-control>
+                    
+                    <!-- Fallback Content for Non-JS Browsers -->
+                    <noscript>
+                        <div class="content-grid">
+                            <div class="content-card">
+                                <h3 class="card-title">Comprehensive Eye Exams</h3>
+                                <p class="card-description">Complete eye health evaluations using the latest diagnostic technology.</p>
+                            </div>
+                            <div class="content-card">
+                                <h3 class="card-title">Contact Lens Fittings</h3>
+                                <p class="card-description">Expert consultation and fitting for all types of contact lenses.</p>
+                            </div>
+                            <div class="content-card">
+                                <h3 class="card-title">Prescription Glasses</h3>
+                                <p class="card-description">Wide selection of frames and the latest lens technology.</p>
+                            </div>
+                        </div>
+                    </noscript>
+                </section>
+
+                <!-- Portfolio Page Section -->
+                <section class="page-section" id="portfolio">
+                    <h2 class="section-title">[Fallback] Portfolio Loading...</h2>
+                    <div class="content-card">
+                        <p class="card-description">Failed to load portfolio content from content.json</p>
+                    </div>
+                </section>
+
+                <!-- Contact Page Section -->
+                <section class="page-section" id="contact">
+                    <h2 class="section-title">[Fallback] Contact Information Loading...</h2>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3 class="card-title">Phone</h3>
+                            <p class="card-description">[Fallback] Phone number loading...</p>
+                        </div>
+                        
+                        <div class="content-card">
+                            <h3 class="card-title">Email</h3>
+                            <p class="card-description">[Fallback] Email loading...</p>
+                        </div>
+                        
+                        <div class="content-card">
+                            <h3 class="card-title">Location</h3>
+                            <p class="card-description">[Fallback] Address loading...</p>
+                        </div>
+                        
+                        <div class="content-card">
+                            <h3 class="card-title">Hours</h3>
+                            <p class="card-description">[Fallback] Business hours loading...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Chat Page Section -->
+                <section class="page-section" id="chat">
+                    <h2 class="section-title">[Fallback] Chat System Loading...</h2>
+                    <div class="chat-fallback">
+                        <div class="content-card">
+                            <p class="card-description">[Fallback] Chat widget loading... If this message persists, check content.json file</p>
+                        </div>
+                    </div>
+                    <div id="chat-container"></div>
+                </section>
+
+                <!-- Privacy Policy Page Section -->
+                <section class="page-section" id="privacy">
+                    <h2 class="section-title">[Fallback] Privacy Policy Loading...</h2>
+                    <div class="content-card">
+                        <h3 class="card-title">[Fallback] Privacy Policy</h3>
+                        <p class="card-description">[Fallback] Privacy policy content loading from content.json...</p>
+                    </div>
+                </section>
+
+                <!-- Terms of Service Page Section -->
+                <section class="page-section" id="terms">
+                    <h2 class="section-title">[Fallback] Terms of Service Loading...</h2>
+                    <div class="content-card">
+                        <h3 class="card-title">[Fallback] Terms of Service</h3>
+                        <p class="card-description">[Fallback] Terms of service content loading from content.json...</p>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Footer -->
+            <footer class="site-footer" id="site-footer" role="contentinfo">
+                <div class="footer-content">
+                    <div class="footer-left">
+                        <p class="footer-text" id="footer-copyright">[Fallback] Copyright loading...</p>
+                        
+                        <!-- Emergency Contact Section - Moved from nav to footer -->
+                        <div class="emergency-contact" id="emergency-contact">
+                            <div class="emergency-title" id="emergency-title">24/7 Emergency</div>
+                            <a href="tel:+256760526155" class="emergency-phone" id="emergency-phone" aria-label="Call emergency number">
+                                +256 760 526 155
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-center">
+                        <nav aria-label="Footer navigation">
+                            <ul class="footer-links" id="footer-links">
+                                <!-- Footer links will be populated from content.json -->
+                                <li><a href="#home" class="footer-link">[Fallback] Footer Link Loading...</a></li>
+                                <li><a href="#about" class="footer-link">[Fallback] Footer Link Loading...</a></li>
+                                <li><a href="#services" class="footer-link">[Fallback] Footer Link Loading...</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="footer-right">
+                        <button 
+                            class="theme-toggle theme-toggle-40px" 
+                            id="themeToggle" 
+                            aria-label="Switch to light mode"
+                            title="Switch theme">
+                            <span class="theme-icon" id="themeIcon">🌙</span>
+                        </button>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Error boundary for JavaScript failures -->
+    <div id="error-boundary" role="alert" aria-live="assertive">
+        <div class="error-message">
+            <h2>Something went wrong</h2>
+            <p>We're sorry, but something unexpected happened. Please try refreshing the page.</p>
+            <button onclick="location.reload()" class="cta-button">Refresh Page</button>
+        </div>
+    </div>
+
+    <!-- JavaScript - Load in correct order -->
+    <script src="js/logo-fallback.js"></script>
+    <script src="js/enforce-left-nav.js"></script>
+    <script src="js/enforce-left-nav-new.js" defer></script>
+    <script src="js/content-loader.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+    <script src="js/header-visibility.js" defer></script>
+    <script src="js/wc-tab-control/tab-control.js" defer></script>
+    <script src="js/app-with-components.js" defer></script>
+    <script src="js/chat-widget.js" defer></script>
+    <!-- Removed footer-navigation-fix.js - functionality consolidated in app.js -->
+
+    <!-- Service Worker registration -->
+    <script>
+        if ('serviceWorker' in navigator && location.hostname !== 'localhost') {
+            window.addEventListener('load', async function() {
+                try {
+                    const registration = await navigator.serviceWorker.register('/sw.js');
+                    console.log('✅ Service Worker registered:', registration);
+                } catch (error) {
+                    console.log('ℹ️ Service Worker registration failed:', error);
+                }
+            });
+        }
+    </script>
 </body>
-
 </html>

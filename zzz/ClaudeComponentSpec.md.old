@@ -1,3 +1,0 @@
-# Claude Component Spec
-
-...existing code...

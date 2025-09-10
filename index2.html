@@ -1,141 +1,358 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="ocean" data-mode="dark">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loading...</title>
-  <meta name="description" content="Loading...">
-  <meta name="keywords" content="eye care, optometrist, glasses, eye exams">
-
-  <!-- Enhanced Favicon Support -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-
-  <!-- External Stylesheets -->
-  <link rel="stylesheet" href="css/styles.css">
-
-  <!-- Component System - Load FIRST -->
-  <script src="js/component-system.js"></script>
-  <script src="js/content-driven-components.js"></script>
-  
-  <!-- Chat Widget Scripts -->
-  <script src="js/chat-widget.js"></script>
-  <script src="js/wc-claude-chat-component.js"></script>
-  
-  <!-- Main App Script -->
-  <script src="js/app-with-components.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Alex Kisitu - Eye Care Specialist</title>
+    <meta name="description" content="Professional eye care services by Dr. Alex Kisitu - Comprehensive eye exams, contact lens fittings, and prescription glasses in Jinja, Uganda">
+    <meta name="keywords" content="eye care, optometrist, glasses, eye exams, Dr. Alex Kisitu, Jinja, Uganda, vision care">
+    <meta name="author" content="Dr. Alex Kisitu">
+    
+    <!-- OPTIMIZED: Preload critical resources for maximum performance -->
+    <link rel="preload" href="css/variables.css" as="style">
+    <link rel="preload" href="css/base.css" as="style">
+    <link rel="preload" href="css/layout.css" as="style">
+    <link rel="preload" href="css/enhanced-grid-layout.css" as="style">
+    <link rel="preload" href="js/content-loader-js.js" as="script">
+    <link rel="preload" href="data/content.json" as="fetch" crossorigin>
+    
+    <!-- Enhanced Favicon Support -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <!-- OPTIMIZED: Modular CSS files - Critical path optimized -->
+    <link rel="stylesheet" href="css/css-variables.css">
+    <link rel="stylesheet" href="css/css-base.css">
+    <link rel="stylesheet" href="css/css-layout.css">
+    <link rel="stylesheet" href="css/css-components.css">
+    <link rel="stylesheet" href="css/css-chat.css">
+    <link rel="stylesheet" href="css/css-footer.css">
+    
+    <!-- DNS prefetching for external resources -->
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalBusiness",
+      "name": "Dr. Alex Kisitu Eye Care",
+      "description": "Professional eye care services in Jinja, Uganda",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jinja",
+        "addressRegion": "Eastern Region",
+        "addressCountry": "UG"
+      },
+      "telephone": "+256760526155",
+      "email": "sehtvision@gmail.com",
+      "url": "https://dralexkisitu.com",
+      "medicalSpecialty": "Optometry",
+      "priceRange": "$$"
+    }
+    </script>
 </head>
 
-<body data-theme="ocean" data-layout="left-nav" data-mode="dark" class="theme-ocean dark-mode">
+<body class="dark-mode" data-mode="dark" data-theme="ocean" data-layout="left-nav">
+    <!-- Skip navigation link for accessibility -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
 
-  <!-- Loading Overlay -->
-  <div class="loading-overlay active" id="loading-overlay">
-    <div class="loading-spinner"></div>
-  </div>
-
-  <!-- Mobile menu toggle -->
-  <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-    <span aria-hidden="true">☰</span>
-  </button>
-
-  <div class="site-container">
-    <!-- Left Navigation - will be populated from JSON -->
-    <nav class="site-nav" id="site-nav" role="navigation" aria-label="Main navigation">
-      <div class="nav-menu">
-        <ul class="nav-list" id="nav-list" role="menubar">
-          <!-- Navigation items will be loaded here -->
-        </ul>
-      </div>
-    </nav>
-
-    <!-- Content Area -->
-    <div class="site-content">
-      <!-- Main Content -->
-      <main class="main-content" id="main-content" role="main" aria-live="polite">
-        <!-- Initial skeleton loading -->
-        <div class="skeleton" style="height: 60px; margin-bottom: 1rem;"></div>
-        <div class="skeleton" style="height: 200px; margin-bottom: 1rem;"></div>
-        <div class="skeleton" style="height: 100px; margin-bottom: 1rem;"></div>
-        <div class="skeleton" style="height: 150px;"></div>
-      </main>
-
-      <!-- Footer - will be populated from JSON -->
-      <footer class="site-footer" id="site-footer" role="contentinfo">
-        <div class="footer-content">
-          <p class="footer-text" id="footer-copyright">Loading...</p>
-          <nav aria-label="Footer navigation">
-            <ul class="footer-links" id="footer-links">
-              <!-- Footer links will be loaded here -->
-            </ul>
-          </nav>
-        </div>
-      </footer>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay active" id="loading-overlay" aria-hidden="true">
+        <div class="loading-spinner" role="status" aria-label="Loading page content"></div>
     </div>
-  </div>
 
-  <!-- Component Status Display (for debugging) -->
-  <div id="component-status" style="
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    background: rgba(0,0,0,0.8);
-    color: white;
-    padding: 0.5rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    z-index: 1000;
-    max-width: 200px;
-    display: none;
-  ">
-    <div id="component-count">Components: 0/0</div>
-    <button onclick="this.parentElement.style.display='none'" style="float:right;background:none;border:none;color:white;cursor:pointer;">×</button>
-  </div>
+    <!-- Mobile Menu Toggle -->
+    <button 
+        class="mobile-toggle" 
+        id="mobile-toggle" 
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="site-nav">
+        ≡
+    </button>
 
-  <script>
-    // Show component status for debugging
-    document.addEventListener('component-loaded', (e) => {
-      const status = document.getElementById('component-status');
-      const count = document.getElementById('component-count');
-      if (window.componentSystem) {
-        const systemStatus = window.componentSystem.getStatus();
-        count.textContent = `Components: ${systemStatus.loaded}/${systemStatus.registered}`;
-        if (systemStatus.errors > 0) {
-          count.textContent += ` (${systemStatus.errors} errors)`;
-          status.style.background = 'rgba(255,0,0,0.8)';
+    <!-- Two Column Layout Container -->
+    <div class="two-column-layout">
+        
+        <!-- LEFT COLUMN: Navigation -->
+        <nav 
+            class="site-nav" 
+            id="site-nav" 
+            role="navigation" 
+            aria-label="Main navigation">
+            
+            <!-- Navigation Header with Branding -->
+            <div class="nav-header">
+                <div class="nav-logo" id="nav-logo">[Fallback] Content.json did not load</div>
+                <div class="nav-subtitle" id="nav-subtitle">[Fallback] Content.json did not load</div>
+            </div>
+            
+            <div class="nav-menu">
+                <ul class="nav-list" id="nav-list" role="menubar" aria-label="Main menu">
+                    <!-- Navigation links will be populated from content.json -->
+                    <li role="none">
+                        <a href="#home" class="nav-link active" data-section="home" role="menuitem" tabindex="0">
+                            [Fallback] Home
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#about" class="nav-link" data-section="about" role="menuitem" tabindex="-1">
+                            [Fallback] About
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#services" class="nav-link" data-section="services" role="menuitem" tabindex="-1">
+                            [Fallback] Services
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#portfolio" class="nav-link" data-section="portfolio" role="menuitem" tabindex="-1">
+                            [Fallback] Portfolio
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#contact" class="nav-link" data-section="contact" role="menuitem" tabindex="-1">
+                            [Fallback] Contact
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#chat" class="nav-link" data-section="chat" role="menuitem" tabindex="-1">
+                            [Fallback] Chat
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Enhanced Emergency Contact Section -->
+            <!-- Emergency Contact Section -->
+            <div class="nav-contact">
+                <div class="emergency-contact">
+                    <div class="emergency-title">24/7 Emergency</div>
+                    <a href="tel:+256760526155" class="emergency-phone" aria-label="Call emergency number">
+                        +256 760 526 155
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Right Column: Main Content Area -->
+        <div class="main-column">
+            
+            <!-- Enhanced Header Section -->
+            <header class="site-header" role="banner">
+                <div class="page-welcome-header">
+                    <h1 class="welcome-title" id="pageTitle">[Site Title Loading...]</h1>
+                    <p class="copyright-notice" id="pageDescription">[Site Description Loading...]</p>
+                </div>
+                
+                <div class="header-actions">
+                    <button 
+                        class="theme-toggle" 
+                        id="themeToggle" 
+                        aria-label="Toggle between dark and light mode"
+                        aria-pressed="true"
+                        title="Switch theme">
+                        Toggle Theme
+                    </button>
+                    
+                    <!-- Social Media Links -->
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Facebook" title="Facebook">FB</a>
+                        <a href="#" class="social-link" aria-label="Twitter" title="Twitter">TW</a>
+                        <a href="#" class="social-link" aria-label="LinkedIn" title="LinkedIn">LI</a>
+                        <a href="mailto:sehtvision@gmail.com" class="social-link" aria-label="Email" title="Email">EM</a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="main-content" id="main-content" role="main" aria-live="polite" tabindex="-1">
+                
+                <!-- Home Page Section -->
+                <section class="page-section active" id="home">
+                    <div class="hero-section">
+                        <h2>[Welcome Message Loading...]</h2>
+                        <p>[Hero description loading from content.json...]</p>
+                    </div>
+                    
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3 class="card-title">[Service 1 Loading...]</h3>
+                            <p class="card-description">[Service description loading...]</p>
+                        </div>
+                        
+                        <div class="content-card">
+                            <h3 class="card-title">[Service 2 Loading...]</h3>
+                            <p class="card-description">[Service description loading...]</p>
+                        </div>
+                        
+                        <div class="content-card">
+                            <h3 class="card-title">[Service 3 Loading...]</h3>
+                            <p class="card-description">[Service description loading...]</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- About Page Section -->
+                <section class="page-section" id="about">
+                    <h2 class="section-title">[About Section Loading...]</h2>
+                    <div class="content-card">
+                        <h3 class="card-title">[Team Member Loading...]</h3>
+                        <p class="card-description">[Bio loading from content.json...]</p>
+                    </div>
+                </section>
+
+                <!-- Services Page Section -->
+                <section class="page-section" id="services">
+                    <h2 class="section-title">[Services Loading...]</h2>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3 class="card-title">[Service Loading...]</h3>
+                            <p class="card-description">[Description loading...]</p>
+                        </div>
+                        <div class="content-card">
+                            <h3 class="card-title">[Service Loading...]</h3>
+                            <p class="card-description">[Description loading...]</p>
+                        </div>
+                        <div class="content-card">
+                            <h3 class="card-title">[Service Loading...]</h3>
+                            <p class="card-description">[Description loading...]</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Portfolio Page Section -->
+                <section class="page-section" id="portfolio">
+                    <h2 class="section-title">[Portfolio Loading...]</h2>
+                    <div class="content-card">
+                        <p class="card-description">[Portfolio content loading from content.json...]</p>
+                    </div>
+                </section>
+
+                <!-- Contact Page Section -->
+                <section class="page-section" id="contact">
+                    <h2 class="section-title">[Contact Information Loading...]</h2>
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <h3 class="card-title">Phone</h3>
+                            <p class="card-description">[Phone number loading...]</p>
+                        </div>
+                        
+                        <div class="content-card">
+                            <h3 class="card-title">Email</h3>
+                            <p class="card-description">[Email loading...]</p>
+                        </div>
+                        
+                        <div class="content-card">
+                            <h3 class="card-title">Location</h3>
+                            <p class="card-description">[Address loading...]</p>
+                        </div>
+                        
+                        <div class="content-card">
+                            <h3 class="card-title">Hours</h3>
+                            <p class="card-description">[Business hours loading...]</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Chat Page Section -->
+                <section class="page-section" id="chat">
+                    <h2 class="section-title">[Chat System Loading...]</h2>
+                    <div class="chat-fallback">
+                        <div class="content-card">
+                            <p class="card-description">[Chat widget loading... If this message persists, check content.json file]</p>
+                        </div>
+                    </div>
+                    <div id="chat-container"></div>
+                </section>
+            </main>
+
+            <!-- Enhanced Footer -->
+            <footer class="site-footer" role="contentinfo">
+                <div class="footer-content">
+                    <p class="footer-text" id="footer-copyright">[Copyright loading...]</p>
+                    
+                    <nav aria-label="Footer navigation">
+                        <ul class="footer-links" id="footer-links">
+                            <!-- Footer links will be populated from content.json -->
+                            <li><a href="#home" class="footer-link">[Fallback] Footer Link Loading...</a></li>
+                            <li><a href="#about" class="footer-link">[Fallback] Footer Link Loading...</a></li>
+                            <li><a href="#services" class="footer-link">[Fallback] Footer Link Loading...</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Error boundary for JavaScript failures -->
+    <div id="error-boundary" style="display: none;" role="alert" aria-live="assertive">
+        <div class="error-message">
+            <h2>Something went wrong</h2>
+            <p>We're sorry, but something unexpected happened. Please try refreshing the page.</p>
+            <button onclick="location.reload()" class="cta-button">Refresh Page</button>
+        </div>
+    </div>
+
+    <!-- OPTIMIZED: JavaScript loading with proper defer and dependency order -->
+    <!-- Enforce left navigation layout - Load before other scripts -->
+    <script src="js/enforce-left-nav.js"></script>
+    
+    <!-- Content loader - Load first as other scripts depend on it -->
+        <script src="js/enforce-left-nav-new.js" defer></script>
+    <script src="js/content-loader-js.js" defer></script>
+    
+    <!-- Navigation system - Load after content loader -->
+    <script src="js/navigation.js" defer></script>
+    
+    <!-- OPTIMIZED: Web components system for enhanced layout -->
+    <script src="js/app-with-components.js" defer></script>
+    
+    <!-- Chat system - Load on demand -->
+    <script>
+        // OPTIMIZED: Lazy load chat widget only when needed
+        function loadChatWidget() {
+            if (!window.ChatWidget) {
+                const script = document.createElement('script');
+                script.src = 'js/chat-widget.js';
+                script.defer = true;
+                document.head.appendChild(script);
+            }
         }
-        status.style.display = 'block';
-        // Auto-hide after 3 seconds if no errors
-        if (systemStatus.errors === 0) {
-          setTimeout(() => {
-            status.style.display = 'none';
-          }, 3000);
+
+        // Load chat widget when user navigates to chat page
+        document.addEventListener('navigation-change', function(e) {
+            if (e.detail && e.detail.page === 'chat') {
+                loadChatWidget();
+            }
+        });
+
+        // Also load if user clicks on chat-related elements
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('[href="#chat"]') || e.target.closest('[data-page="chat"]')) {
+                loadChatWidget();
+            }
+        });
+    </script>
+    
+    <!-- Web component for Claude chat -->
+    <script src="js/wc-claude-chat-component.js" defer></script>
+
+    <!-- OPTIMIZED: Service Worker registration with error handling -->
+    <script>
+        if ('serviceWorker' in navigator && location.hostname !== 'localhost') {
+            window.addEventListener('load', async function() {
+                try {
+                    const registration = await navigator.serviceWorker.register('/sw.js');
+                    console.log('✅ Service Worker registered:', registration);
+                } catch (error) {
+                    console.log('ℹ️ Service Worker registration failed:', error);
+                }
+            });
         }
-      }
-    });
-
-    // Show component errors
-    document.addEventListener('component-error', (e) => {
-      console.warn('Component error:', e.detail);
-      const status = document.getElementById('component-status');
-      status.style.background = 'rgba(255,0,0,0.8)';
-      status.style.display = 'block';
-    });
-
-    // Debug function to check component system status
-    window.checkComponents = function() {
-      if (window.componentSystem) {
-        const status = window.componentSystem.getStatus();
-        console.log('Component System Status:', status);
-        return status;
-      } else {
-        console.log('Component system not loaded');
-        return null;
-      }
-    };
-  </script>
+    </script>
 </body>
-
 </html>

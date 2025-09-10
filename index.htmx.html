@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ocean" data-mode="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEHT-Smart Eye Health Technologies - Eye Care Specialist</title>
+    <meta name="description" content="Professional eye care services by SEHT-Smart Eye Health Technologies - Comprehensive eye exams, contact lens fittings, and prescription glasses in Jinja, Uganda">
+    <meta name="keywords" content="eye care, optometrist, glasses, eye exams, SEHT-Smart Eye Health Technologies, Jinja, Uganda, vision care">
+    <meta name="author" content="SEHT-Smart Eye Health Technologies">
+    
+    <!-- Preload critical resources for better performance -->
+    <link rel="preload" href="css/css-variables.css" as="style">
+    <link rel="preload" href="css/css-base.css" as="style">
+    <link rel="preload" href="css/css-layout.css" as="style">
+    
+    <!-- Enhanced Favicon Support -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <!-- Modular CSS - Load in order of importance -->
+    <link rel="stylesheet" href="css/css-variables.css">
+    <link rel="stylesheet" href="css/css-base.css">
+    <link rel="stylesheet" href="css/css-layout.css">
+    <link rel="stylesheet" href="css/css-components.css">
+    <link rel="stylesheet" href="css/css-header.css">
+    <link rel="stylesheet" href="css/css-chat.css">
+    <link rel="stylesheet" href="css/css-footer.css">
+    
+    <!-- HTMX Core Library -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <!-- HTMX Extensions -->
+    <script src="https://unpkg.com/htmx.org@1.9.10/dist/ext/loading-states.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.10/dist/ext/head-support.js"></script>
+    
+    <!-- Content loader and navigation -->
+    <script src="js/content-loader.js" defer></script>
+    <script src="js/section-navigation.js" defer></script>
+    
+    <!-- DNS prefetching for external resources -->
+    <link rel="dns-prefetch" href="//unpkg.com">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MedicalBusiness",
+        "name": "SEHT-Smart Eye Health Technologies",
+        "description": "Professional eye care services in Jinja, Uganda",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Jinja",
+            "addressRegion": "Eastern Region",
+            "addressCountry": "UG"
+        },
+        "telephone": "+256760526155",
+        "email": "sehtvision@gmail.com",
+        "url": "https://dralexkisitu.com",
+        "medicalSpecialty": "Optometry",
+        "priceRange": "$$"
+    }
+    </script>
+    
+    <!-- Theme toggle script -->
+    <script>
+        // Simple theme toggle without heavy JS
+        function toggleTheme() {
+            const body = document.body;
+            const isDark = body.classList.contains('dark-mode');
+            body.classList.toggle('dark-mode', !isDark);
+            body.classList.toggle('light-mode', isDark);
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        }
+        
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.body.className = savedTheme + '-mode';
+        });
+    </script>
+</head>
+
+<body class="dark-mode">
+    <!-- Mobile menu toggle -->
+    <button 
+        class="mobile-toggle" 
+        id="mobile-toggle" 
+        onclick="document.getElementById('site-nav').classList.toggle('open')"
+        aria-label="Toggle navigation menu" 
+        aria-expanded="false">
+        ≡
+    </button>
+
+    <!-- Two Column Layout Container -->
+    <div class="two-column-layout">
+        
+        <!-- LEFT COLUMN: Navigation -->
+        <nav 
+            class="site-nav" 
+            id="site-nav" 
+            role="navigation" 
+            aria-label="Main navigation">
+            
+            <!-- Navigation Header with Branding -->
+            <div class="nav-menu">
+                <ul class="nav-list" role="menubar" aria-label="Main menu">
+                    <li role="none">
+                        <a href="javascript:void(0)" 
+                           class="nav-link active" 
+                           data-section="home"
+                           hx-get="/api/content/home" 
+                           hx-target="#main-content" 
+                           hx-push-url="true"
+                           hx-indicator="#loading-indicator"
+                           role="menuitem">
+                            🏠 Home
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="javascript:void(0)" 
+                           class="nav-link" 
+                           data-section="about"
+                           hx-get="/api/content/about" 
+                           hx-target="#main-content" 
+                           hx-push-url="true"
+                           hx-indicator="#loading-indicator"
+                           role="menuitem">
+                            👨‍⚕️ About
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="javascript:void(0)" 
+                           class="nav-link" 
+                           data-section="services"
+                           hx-get="/api/content/services" 
+                           hx-target="#main-content" 
+                           hx-push-url="true"
+                           hx-indicator="#loading-indicator"
+                           role="menuitem">
+                            🔬 Services
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="javascript:void(0)" 
+                           class="nav-link" 
+                           data-section="portfolio"
+                           hx-get="/api/content/portfolio" 
+                           hx-target="#main-content" 
+                           hx-push-url="true"
+                           hx-indicator="#loading-indicator"
+                           role="menuitem">
+                            📸 Portfolio
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="javascript:void(0)" 
+                           class="nav-link" 
+                           data-section="contact"
+                           hx-get="/api/content/contact" 
+                           hx-target="#main-content" 
+                           hx-push-url="true"
+                           hx-indicator="#loading-indicator"
+                           role="menuitem">
+                            📞 Contact
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="javascript:void(0)" 
+                           class="nav-link" 
+                           data-section="chat"
+                           hx-get="/api/content/chat" 
+                           hx-target="#main-content" 
+                           hx-push-url="true"
+                           hx-indicator="#loading-indicator"
+                           role="menuitem">
+                            💬 Chat
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Emergency Contact Section -->
+            <div class="nav-contact">
+                <div class="emergency-contact">
+                    <div class="emergency-title">24/7 Emergency</div>
+                    <a href="tel:+256760526155" class="emergency-phone" aria-label="Call emergency number">
+                        📱 +256 760 526 155
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- RIGHT COLUMN: Main Content -->
+        <div class="main-column">
+            
+            <!-- Header -->
+            <header class="header" role="banner">
+                <div class="header-container">
+                    <div class="header-content">
+                        <h1 class="header-title" id="pageTitle">SEHT</h1>
+                        <p class="header-subtitle">Smart Eye Health Technologies</p>
+                        <p class="header-description" id="pageDescription">
+                            Professional eye care services in Jinja, Uganda. 
+                            Comprehensive eye exams, contact lens fittings, and prescription glasses 
+                            with the latest technology and personalized care.
+                        </p>
+                        <p class="header-tagline">At SEHT, Vision is Possible</p>
+                    </div>
+                    
+                    <div class="header-image">
+                        <div class="logo-container">
+                            <img src="images/SEHTTitle.png" 
+                                alt="SEHT - Smart Eye Health Technologies" 
+                                class="logo-image"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="logo-fallback" class="logo-fallback-hidden">
+                                SEHT<br>
+                                <span class="logo-fallback-text">Smart Eye Health<br>Technologies</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <button 
+                            class="theme-toggle theme-toggle-50px" 
+                            onclick="toggleTheme()"
+                            aria-label="Switch theme"
+                            title="Switch theme">
+                            <span class="theme-icon">🌙</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Loading indicator -->
+            <div id="loading-indicator" class="loading-spinner">Loading...</div>
+
+            <!-- Main Content Area - This gets replaced by HTMX -->
+            <main 
+                class="main-content" 
+                id="main-content" 
+                role="main" 
+                hx-history-elt>
+                
+                <!-- Default Home Content - Content will be generated from content.json -->
+                <section class="page-section" id="home">
+                    <div class="hero-section">
+                        <div class="hero-content">
+                            <h2 class="hero-title">Welcome to SEHT</h2>
+                            <p class="hero-description">Your trusted partner for comprehensive eye care services in Jinja, Uganda. We provide professional optometry services with the latest technology and personalized care.</p>
+                            <div class="hero-actions">
+                                <a href="javascript:void(0)" 
+                                   data-section="contact"
+                                   class="cta-button primary">
+                                    Book Appointment
+                                </a>
+                                <a href="javascript:void(0)" 
+                                   data-section="services"
+                                   class="cta-button secondary">
+                                    Our Services
+                                </a>
+                            </div>
+                        </div>
+                        <div class="hero-image">
+                            <img src="images/SEHTTitle.png" alt="SEHT Clinic" class="clinic-image">
+                        </div>
+                    </div>
+
+                    <!-- Quick Services Preview -->
+                    <div class="content-grid">
+                        <div class="content-card">
+                            <div class="card-icon">👁️</div>
+                            <h3 class="card-title">Comprehensive Eye Exams</h3>
+                            <p class="card-description">Complete eye health evaluations using the latest diagnostic technology.</p>
+                        </div>
+                        
+                        <div class="content-card">
+                            <div class="card-icon">🥽</div>
+                            <h3 class="card-title">Contact Lens Fittings</h3>
+                            <p class="card-description">Expert consultation and fitting for all types of contact lenses.</p>
+                        </div>
+                        
+                        <div class="content-card">
+                            <div class="card-icon">👓</div>
+                            <h3 class="card-title">Prescription Glasses</h3>
+                            <p class="card-description">Wide selection of frames and the latest lens technology.</p>
+                        </div>
+                    </div>
+
+                    <!-- Latest News Section -->
+                    <section class="news-section">
+                        <h3>Latest Updates</h3>
+                        <div id="news-container">
+                            <div class="news-grid">
+                                <div class="news-item">
+                                    <h4>New Optical Equipment</h4>
+                                    <p>We've invested in the latest optical equipment to provide even better care.</p>
+                                    <span class="news-date">August 25, 2025</span>
+                                </div>
+                                <div class="news-item">
+                                    <h4>Extended Hours</h4>
+                                    <p>We now offer appointments on Saturday afternoons.</p>
+                                    <span class="news-date">August 10, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+                
+                <!-- Additional sections for other pages -->
+                <section class="page-section hidden" id="about">
+                    <h2 class="section-title">About Us</h2>
+                    <!-- Content will be populated by ContentLoader -->
+                </section>
+                
+                <section class="page-section hidden" id="services">
+                    <h2 class="section-title">Our Services</h2>
+                    <div class="content-grid">
+                        <!-- Services will be populated by ContentLoader -->
+                    </div>
+                </section>
+                
+                <section class="page-section hidden" id="portfolio">
+                    <h2 class="section-title">Patient Stories</h2>
+                    <!-- Testimonials will be populated by ContentLoader -->
+                </section>
+                
+                <section class="page-section hidden" id="contact">
+                    <h2 class="section-title">Contact Us</h2>
+                    <div class="content-grid">
+                        <!-- Contact info will be populated by ContentLoader -->
+                    </div>
+                </section>
+                
+                <section class="page-section hidden" id="chat">
+                    <h2 class="section-title">Chat With Us</h2>
+                    <!-- Chat widget will be populated by ContentLoader -->
+                </section>
+                
+                <section class="page-section hidden" id="privacy">
+                    <h2 class="section-title">Privacy Policy</h2>
+                    <!-- Privacy policy will be populated by ContentLoader -->
+                </section>
+                
+                <section class="page-section hidden" id="terms">
+                    <h2 class="section-title">Terms of Service</h2>
+                    <!-- Terms will be populated by ContentLoader -->
+                </section>
+            </main>
+
+            <!-- Footer -->
+            <footer class="site-footer" role="contentinfo">
+                <div class="footer-content">
+                    <p class="footer-text" id="footer-copyright">© 2025 SEHT-Smart Eye Health Technologies. All rights reserved.</p>
+                    <nav aria-label="Footer navigation">
+                        <ul class="footer-links" id="footer-links">
+                            <li>
+                                <a href="javascript:void(0)" class="footer-link" data-section="privacy">
+                                    Privacy Policy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="footer-link" data-section="terms">
+                                    Terms of Service
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#contact" class="footer-link">
+                                    Contact Us
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Error boundary for HTMX failures -->
+    <div id="error-boundary" class="hidden-error" role="alert">
+        <div class="error-message">
+            <h2>Connection Error</h2>
+            <p>Unable to load content. Please check your connection and try again.</p>
+            <button onclick="location.reload()" class="cta-button">Refresh Page</button>
+        </div>
+    </div>
+
+    <!-- Navigation & Content Loading Script -->
+    <script>
+        // Add event listener for navigation link clicks
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    // Prevent default only for hash links to avoid page jump
+                    if (this.getAttribute('href').startsWith('#')) {
+                        event.preventDefault();
+                        
+                        // Get the target section ID
+                        const sectionId = this.getAttribute('href').substring(1);
+                        
+                        // Update URL hash without scrolling
+                        history.pushState(null, null, '#' + sectionId);
+                    }
+                    
+                    // Remove active class from all links
+                    document.querySelectorAll('.nav-link').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Close mobile menu if it's open
+                    if (window.innerWidth < 1025) {
+                        document.getElementById('site-nav').classList.remove('open');
+                    }
+                });
+            });
+            
+            // Handle back/forward browser buttons
+            window.addEventListener('popstate', function() {
+                const hash = window.location.hash;
+                if (hash) {
+                    const sectionId = hash.substring(1);
+                    const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+                    if (navLink) {
+                        // Update active link
+                        document.querySelectorAll('.nav-link').forEach(item => {
+                            item.classList.remove('active');
+                        });
+                        navLink.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+
+    <!-- Service Worker registration -->
+    <script>
+        if ('serviceWorker' in navigator && location.hostname !== 'localhost') {
+            window.addEventListener('load', async function() {
+                try {
+                    const registration = await navigator.serviceWorker.register('/sw.js');
+                    console.log('✅ Service Worker registered:', registration);
+                } catch (error) {
+                    console.log('ℹ️ Service Worker registration failed:', error);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

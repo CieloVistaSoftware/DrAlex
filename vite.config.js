@@ -5,6 +5,9 @@ export default defineConfig({
   server: {
     port: 5000,
     open: 'index.html',
-  },
-  publicDir: '.',
+    watch: {
+      ignored: ['**/node_modules/**', '**/coverage/**', '**/.git/**']
+    }
+  }
+  // Remove publicDir: '.' completely!
 });

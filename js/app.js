@@ -8,37 +8,37 @@ if (!window.EyeCareApp) {
       this.isLoading = false;
       this.loadingOverlay = document.getElementById('loading-overlay');
       this.mainContent = document.getElementById('main-content');
-      
+
       this.init();
     }
-    
+
     async init() {
       try {
         // Load configuration first
         const configLoaded = await this.loadConfig();
-        
+
         // Show error if JSON failed to load
         if (!configLoaded) {
           this.showCriticalError();
           return;
         }
-        
+
         // Initialize site metadata
         this.initializeSiteMetadata();
-        
+
         // Build navigation and footer
         this.buildNavigation();
         this.buildFooter();
-        
+
         // Setup event listeners
         this.setupEventListeners();
-        
+
         // Handle initial page load
         this.handleInitialLoad();
-        
+
         // Register service worker
         this.registerServiceWorker();
-        
+
       } catch (error) {
         this.handleError('Failed to initialize application', error);
       } finally {
@@ -46,16 +46,16 @@ if (!window.EyeCareApp) {
         this.showLoading(false);
       }
     }
-    
+
     async loadConfig() {
       try {
         console.log('Loading configuration from data/content.json...');
         const response = await fetch('data/content.json');
-        
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         this.config = await response.json();
         console.log('✅ Configuration loaded successfully');
         return true;
@@ -64,7 +64,7 @@ if (!window.EyeCareApp) {
         return false;
       }
     }
-    
+
     showCriticalError() {
       this.mainContent.innerHTML = `
         <section class="content-section">
@@ -81,10 +81,10 @@ if (!window.EyeCareApp) {
         </section>
       `;
     }
-    
+
     initializeSiteMetadata() {
       if (!this.config?.site) return;
-      
+
       // Update structured data
       const structuredData = {
         "@context": "https://schema.org",
@@ -92,7 +92,7 @@ if (!window.EyeCareApp) {
         "name": this.config.site.title,
         "description": this.config.site.description
       };
-      
+
       if (this.config.contact) {
         if (this.config.contact.phones?.[0]) {
           structuredData.telephone = this.config.contact.phones[0].number;
@@ -108,7 +108,7 @@ if (!window.EyeCareApp) {
           };
         }
       }
-      
+
       // Update or create structured data script
       let structuredScript = document.querySelector('script[type="application/ld+json"]');
       if (!structuredScript) {
@@ -117,13 +117,13 @@ if (!window.EyeCareApp) {
         document.head.appendChild(structuredScript);
       }
       structuredScript.textContent = JSON.stringify(structuredData);
-      
+
       // Update meta tags
       document.title = this.config.site.title;
       this.updateMetaTag('description', this.config.site.description);
       this.updateMetaTag('keywords', this.config.site.keywords);
     }
-    
+
     updateMetaTag(name, content) {
       if (!content) return;
       let meta = document.querySelector(`meta[name="${name}"]`);
@@ -134,98 +134,86 @@ if (!window.EyeCareApp) {
       }
       meta.content = content;
     }
-    
+
     buildNavigation() {
-      const navList = document.getElementById('nav-list');
-      if (!navList || !this.config?.navigation) return;
-      
-      navList.innerHTML = '';
-      
+      const navLinks = document.querySelectorAll('#nav-list .nav-link');
+      if (!navLinks.length || !this.config?.navigation) return;
+
       this.config.navigation.forEach((item, index) => {
-        const li = document.createElement('li');
-        li.setAttribute('role', 'none');
-        
-        const a = document.createElement('a');
-        a.href = item.url;
-        a.className = `nav-link ${index === 0 ? 'active' : ''}`;
-        a.dataset.section = item.id;
-        a.setAttribute('role', 'menuitem');
-        a.tabIndex = index === 0 ? 0 : -1;
-        a.innerHTML = `${item.icon} <span>${item.label}</span>`;
-        
-        li.appendChild(a);
-        navList.appendChild(li);
+        if (navLinks[index]) {
+          navLinks[index].textContent = item.label;        // ✅ Replace fallback text
+          navLinks[index].href = item.url;                 // ✅ Set real URL
+          navLinks[index].dataset.section = item.id;       // ✅ Set data attribute
+          if (index === 0) navLinks[index].classList.add('active');  // ✅ Set first as active
+        }
       });
     }
-    
+
     buildFooter() {
       const footerCopyright = document.getElementById('footer-copyright');
       const footerLinks = document.getElementById('footer-links');
-      
+
       if (footerCopyright && this.config?.site?.copyright) {
         footerCopyright.textContent = `© ${this.config.site.copyright}`;
       }
-      
+
       if (footerLinks && this.config?.footer?.links) {
-        footerLinks.innerHTML = '';
-        
-        this.config.footer.links.forEach(link => {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = link.url;
-          a.className = 'footer-link';
-          a.textContent = link.label;
-          li.appendChild(a);
-          footerLinks.appendChild(li);
+        const footerLinkElements = footerLinks.querySelectorAll('.footer-link');
+
+        this.config.footer.links.forEach((link, index) => {
+          if (footerLinkElements[index]) {
+            footerLinkElements[index].textContent = link.label;  // ✅ Replace fallback
+            footerLinkElements[index].href = link.url;           // ✅ Set real URL
+          }
         });
       }
     }
-    
+
     setupEventListeners() {
       // Mobile toggle
       const mobileToggle = document.getElementById('mobile-toggle');
       if (mobileToggle) {
         mobileToggle.addEventListener('click', (e) => this.toggleNav(e));
       }
-      
+
       // Navigation with event delegation
       const navList = document.getElementById('nav-list');
       if (navList) {
         navList.addEventListener('click', (e) => this.handleNavigation(e));
         navList.addEventListener('keydown', (e) => this.handleKeyboardNavigation(e));
       }
-      
+
       // Close mobile nav when clicking outside
       document.addEventListener('click', (e) => this.handleOutsideClick(e));
-      
+
       // Popstate with debouncing
       window.addEventListener('popstate', (e) => this.handlePopState(e));
-      
+
       // Handle phone and email links
       document.addEventListener('click', (e) => this.handleContactLinks(e));
-      
+
       // Handle internal navigation links (like CTAs and footer links)
       document.addEventListener('click', (e) => this.handleInternalLinks(e));
     }
-    
+
     toggleNav(e) {
       e.preventDefault();
       const nav = document.getElementById('site-nav');
       const toggle = document.getElementById('mobile-toggle');
-      
+
       if (nav && toggle) {
         const isOpen = nav.classList.contains('open');
         nav.classList.toggle('open');
         toggle.setAttribute('aria-expanded', !isOpen);
       }
     }
-    
+
     handleNavigation(e) {
       const link = e.target.closest('.nav-link');
       if (!link) return;
-      
+
       e.preventDefault();
-      
+
       try {
         this.updateActiveNavLink(link);
         const section = link.dataset.section;
@@ -237,16 +225,16 @@ if (!window.EyeCareApp) {
         this.handleError('Navigation failed', error);
       }
     }
-    
+
     handleKeyboardNavigation(e) {
       const currentLink = e.target;
       if (!currentLink.classList.contains('nav-link')) return;
-      
+
       const navLinks = Array.from(document.querySelectorAll('.nav-link'));
       const currentIndex = navLinks.indexOf(currentLink);
-      
+
       let targetIndex;
-      
+
       switch (e.key) {
         case 'ArrowDown':
           e.preventDefault();
@@ -272,46 +260,46 @@ if (!window.EyeCareApp) {
         default:
           return;
       }
-      
+
       navLinks.forEach((link, index) => {
         link.tabIndex = index === targetIndex ? 0 : -1;
       });
       navLinks[targetIndex].focus();
     }
-    
+
     updateActiveNavLink(activeLink) {
       const navLinks = document.querySelectorAll('.nav-link');
       navLinks.forEach(link => {
         link.classList.remove('active');
         link.tabIndex = -1;
       });
-      
+
       activeLink.classList.add('active');
       activeLink.tabIndex = 0;
     }
-    
+
     handleOutsideClick(e) {
       const nav = document.getElementById('site-nav');
       const toggle = document.getElementById('mobile-toggle');
-      
+
       if (nav && toggle && !nav.contains(e.target) && !toggle.contains(e.target)) {
         nav.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
       }
     }
-    
+
     handlePopState(e) {
       clearTimeout(this.debounceTimer);
       this.debounceTimer = setTimeout(() => {
         try {
           const hash = window.location.hash.slice(1);
           const section = hash || 'home';
-          
+
           const activeLink = document.querySelector(`[data-section="${section}"]`);
           if (activeLink) {
             this.updateActiveNavLink(activeLink);
           }
-          
+
           this.loadPage(section);
           this.scrollToTop();
         } catch (error) {
@@ -319,18 +307,18 @@ if (!window.EyeCareApp) {
         }
       }, 100);
     }
-    
+
     handleContactLinks(e) {
       if (e.target.tagName === 'A') {
         if (e.target.href.startsWith('tel:')) {
           const phoneNumber = e.target.href.replace('tel:', '');
-          
+
           if (!/^\+?[\d\s-()]+$/.test(phoneNumber)) {
             e.preventDefault();
             this.showError('Invalid phone number format');
             return;
           }
-          
+
           if (!('ontouchstart' in window) && !navigator.userAgent.includes('Mobile')) {
             e.preventDefault();
             this.copyToClipboard(phoneNumber);
@@ -339,26 +327,26 @@ if (!window.EyeCareApp) {
         }
       }
     }
-    
+
     handleInternalLinks(e) {
       const link = e.target.closest('a');
       if (!link) return;
-      
+
       const href = link.getAttribute('href');
       if (href && href.startsWith('#') && href.length > 1) {
         const section = href.substring(1);
-        
+
         // Check if it's a valid navigation section
         const navItem = this.config?.navigation?.find(item => item.id === section);
         if (navItem) {
           e.preventDefault();
-          
+
           // Update active nav link
           const navLink = document.querySelector(`[data-section="${section}"]`);
           if (navLink) {
             this.updateActiveNavLink(navLink);
           }
-          
+
           // Load the page and scroll to top
           this.loadPage(section);
           this.updateURL(section);
@@ -366,24 +354,24 @@ if (!window.EyeCareApp) {
         }
       }
     }
-    
+
     async loadPage(section) {
       if (this.isLoading) return;
-      
+
       try {
         this.isLoading = true;
         this.showLoading(true);
-        
+
         await new Promise(resolve => setTimeout(resolve, 300));
-        
+
         const content = this.generatePageContent(section);
-        
+
         if (this.mainContent) {
           this.mainContent.innerHTML = content;
           this.currentSection = section;
           this.updatePageTitle(section);
         }
-        
+
       } catch (error) {
         this.handleError(`Failed to load ${section} content`, error);
         this.showErrorContent();
@@ -394,10 +382,10 @@ if (!window.EyeCareApp) {
         setTimeout(() => this.scrollToTop(), 50);
       }
     }
-    
+
     generatePageContent(section) {
       if (!this.config) return this.getErrorContent('Configuration not loaded');
-      
+
       switch (section) {
         case 'home':
           return this.generateHomePage();
@@ -419,44 +407,36 @@ if (!window.EyeCareApp) {
           return this.getErrorContent(`Page "${section}" not found`);
       }
     }
-    
+
     generateHomePage() {
-      const page = this.config.pages?.home || {};
-      const hero = page.hero || {};
-      const featuredServices = page.featuredServices || [];
-      
-      let servicesHTML = '';
-      if (featuredServices.length > 0 && this.config.services) {
-        const services = this.config.services.filter(s => featuredServices.includes(s.id));
-        servicesHTML = `
-          <section class="content-section">
-            <h2 class="section-title">Our Services</h2>
-            <div class="content-grid">
-              ${services.map(service => `
-                <div class="content-card">
-                  <span class="card-icon" role="img" aria-label="${service.title}">${service.icon}</span>
-                  <h3 class="card-title">${service.title}</h3>
-                  <p class="card-description">${service.description}</p>
-                </div>
-              `).join('')}
-            </div>
-          </section>
-        `;
+      // Don't generate HTML - just update existing elements
+      const heroTitle = document.querySelector('#home h2');
+      const heroDescription = document.querySelector('#home p');
+
+      if (heroTitle && this.config.pages?.home?.hero?.title) {
+        heroTitle.textContent = this.config.pages.home.hero.title;
       }
-      
+
+      if (heroDescription && this.config.pages?.home?.hero?.description) {
+        heroDescription.textContent = this.config.pages.home.hero.description;
+      }
+
+
+
+
       // Generate hero section with optional image
       const heroImageHTML = hero.image ? `
         <div class="hero-image ${hero.image.position === 'left' ? 'hero-image-left' : 'hero-image-right'}">
           <img src="${hero.image.src}" alt="${hero.image.alt}" class="hero-img" loading="lazy">
         </div>
       ` : '';
-      
+
       const heroContentClass = hero.image ? 'hero-content-with-image' : '';
-      
+
       return `
         <!-- Welcome Header aligned with About page header -->
         <div class="page-welcome-header">
-          <h1 class="welcome-title">Welcome to Site Eternal Hospitals</h1>
+          <h1 class="welcome-title">Welcome to Sight Eternal Hospitals</h1>
           <div class="copyright-notice">© ${new Date().getFullYear()} SiteEternalHospitals. All rights reserved.</div>
         </div>
 
@@ -467,7 +447,7 @@ if (!window.EyeCareApp) {
               ${hero.subtitle ? `<p class="hero-subtitle">${hero.subtitle}</p>` : ''}
               <p class="hero-description">${hero.description || 'Professional services'}</p>
               ${hero.cta ? `
-                <a href="${hero.cta.link}" class="cta-link">
+                <a href="javascript:void(0)" class="cta-link" data-section="${hero.cta.id || 'contact'}">
                   <button class="cta-button">${hero.cta.text}</button>
                 </a>
               ` : ''}
@@ -478,11 +458,11 @@ if (!window.EyeCareApp) {
         ${servicesHTML}
       `;
     }
-    
+
     generateAboutPage() {
       const page = this.config.pages?.about || {};
       const team = this.config.team || [];
-      
+
       const teamHTML = team.length > 0 ? `
         <section class="content-section">
           <h2 class="section-title">Our Team</h2>
@@ -500,7 +480,7 @@ if (!window.EyeCareApp) {
           </div>
         </section>
       ` : '';
-      
+
       return `
         <section class="content-section">
           <h2 class="section-title">${page.title || 'About Us'}</h2>
@@ -522,11 +502,11 @@ if (!window.EyeCareApp) {
         ${teamHTML}
       `;
     }
-    
+
     generateServicesPage() {
       const page = this.config.pages?.services || {};
       const services = this.config.services || [];
-      
+
       return `
         <section class="content-section">
           <h2 class="section-title">${page.title || 'Our Services'}</h2>
@@ -555,11 +535,11 @@ if (!window.EyeCareApp) {
         </section>
       `;
     }
-    
+
     generatePortfolioPage() {
       const page = this.config.pages?.portfolio || {};
       const testimonials = this.config.testimonials || [];
-      
+
       return `
         <section class="content-section">
           <h2 class="section-title">${page.title || 'Portfolio'}</h2>
@@ -589,11 +569,11 @@ if (!window.EyeCareApp) {
         </section>
       `;
     }
-    
+
     generateContactPage() {
       const page = this.config.pages?.contact || {};
       const contact = this.config.contact || {};
-      
+
       return `
         <section class="content-section">
           <h2 class="section-title">${page.title || 'Contact Us'}</h2>
@@ -649,10 +629,10 @@ if (!window.EyeCareApp) {
         </section>
       `;
     }
-    
+
     generateChatPage() {
       const page = this.config.pages?.chat || {};
-      
+
       return `
         <section class="content-section">
           <h2 class="section-title">${page.title || ''}</h2>
@@ -685,17 +665,17 @@ if (!window.EyeCareApp) {
         </section>
       `;
     }
-    
+
     generatePrivacyPage() {
       const page = this.config.pages?.privacy || {};
       return this.generateLegalPage(page, 'Privacy Policy');
     }
-    
+
     generateTermsPage() {
       const page = this.config.pages?.terms || {};
       return this.generateLegalPage(page, 'Terms of Service');
     }
-    
+
     generateLegalPage(page, defaultTitle) {
       return `
         <section class="content-section">
@@ -710,7 +690,7 @@ if (!window.EyeCareApp) {
         </section>
       `;
     }
-    
+
     getErrorContent(message) {
       return `
         <section class="content-section">
@@ -722,13 +702,13 @@ if (!window.EyeCareApp) {
         </section>
       `;
     }
-    
+
     updatePageTitle(section) {
       const navItem = this.config?.navigation?.find(item => item.id === section);
       const title = navItem?.title || this.config?.site?.title || 'Website';
       document.title = title;
     }
-    
+
     updateURL(section) {
       try {
         window.history.pushState({ section }, '', '#' + section);
@@ -736,7 +716,7 @@ if (!window.EyeCareApp) {
         console.warn('Failed to update URL:', error);
       }
     }
-    
+
     closeMobileNav() {
       if (window.innerWidth <= 768) {
         const nav = document.getElementById('site-nav');
@@ -747,7 +727,7 @@ if (!window.EyeCareApp) {
         }
       }
     }
-    
+
     scrollToTop() {
       // Scroll the main content area to the top smoothly
       if (this.mainContent) {
@@ -756,36 +736,36 @@ if (!window.EyeCareApp) {
           behavior: 'smooth'
         });
       }
-      
+
       // Also scroll the window in case the main content doesn't have its own scroll
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
     }
-    
+
     showLoading(show) {
       if (this.loadingOverlay) {
         this.loadingOverlay.classList.toggle('active', show);
       }
     }
-    
+
     handleInitialLoad() {
       try {
         const hash = window.location.hash.slice(1);
         const initialSection = hash || 'home';
-        
+
         const activeLink = document.querySelector(`[data-section="${initialSection}"]`);
         if (activeLink) {
           this.updateActiveNavLink(activeLink);
         }
-        
+
         this.loadPage(initialSection);
       } catch (error) {
         this.handleError('Failed to load initial content', error);
       }
     }
-    
+
     async registerServiceWorker() {
       if ('serviceWorker' in navigator) {
         try {
@@ -802,7 +782,7 @@ if (!window.EyeCareApp) {
         }
       }
     }
-    
+
     async copyToClipboard(text) {
       try {
         await navigator.clipboard.writeText(text);
@@ -815,27 +795,27 @@ if (!window.EyeCareApp) {
         document.body.removeChild(textArea);
       }
     }
-    
+
     showSuccess(message) {
       this.showNotification(message, 'success');
     }
-    
+
     showError(message) {
       this.showNotification(message, 'error');
     }
-    
+
     showNotification(message, type = 'info') {
       const notification = document.createElement('div');
       notification.className = `notification notification-${type}`;
       notification.textContent = message;
-      
+
       const colors = {
         error: '#e74c3c',
         success: '#27ae60',
         warning: '#f39c12',
         info: '#3498db'
       };
-      
+
       notification.style.cssText = `
         position: fixed;
         top: 20px;
@@ -849,19 +829,19 @@ if (!window.EyeCareApp) {
         max-width: 300px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       `;
-      
+
       document.body.appendChild(notification);
-      
+
       setTimeout(() => {
         notification.style.animation = 'slideOut 0.3s ease';
         setTimeout(() => notification.remove(), 300);
       }, type === 'warning' ? 5000 : 3000);
     }
-    
+
     handleError(message, error) {
       console.error(message, error);
       this.showError(message);
-      
+
       if (typeof gtag !== 'undefined') {
         gtag('event', 'exception', {
           description: message,
